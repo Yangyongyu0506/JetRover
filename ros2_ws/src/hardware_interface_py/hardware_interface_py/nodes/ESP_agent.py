@@ -1,3 +1,4 @@
+# 注意，我的代码看似很屎山，但经过我的测试，回调组和线程锁缺一不可，否则会出现各种诡异的问题
 import rclpy
 from rclpy.lifecycle import LifecycleNode
 from rclpy.lifecycle import State, TransitionCallbackReturn
@@ -7,9 +8,11 @@ from hardware_interface_py.drivers.base import BaseController
 from ament_index_python.packages import get_package_share_directory
 import os
 import math
+import threading
 from sensor_msgs.msg import Imu, MagneticField, JointState, BatteryState
 from geometry_msgs.msg import Twist
 from std_msgs.msg import UInt8MultiArray
+from std_srvs.srv import Empty
 
 class ESPAgentNode(LifecycleNode):
     def __init__(self):
@@ -37,6 +40,8 @@ class ESPAgentNode(LifecycleNode):
             # Create callback groups
             self.mtxcbgroup = MutuallyExclusiveCallbackGroup()
             self.retcbgroup = ReentrantCallbackGroup()
+            # Initialize Lock
+            self.base.lock = threading.Lock()
             # Initialize the publishers
             self.pub_imu = self.create_lifecycle_publisher(
                 Imu, 
@@ -93,6 +98,18 @@ class ESPAgentNode(LifecycleNode):
                 10,
                 callback_group=self.mtxcbgroup
             )
+            self.srv_ledoff = self.create_service(
+                Empty,
+                'led_off',
+                self.ledoff_callback,
+                callback_group=self.mtxcbgroup
+            )
+            self.srv_ptmiddle = self.create_service(
+                Empty,
+                'pt_set_mid',
+                self.ptsetmid_callback,
+                callback_group=self.mtxcbgroup
+            )
         except Exception as e:
             self.get_logger().error(f"Failed to activate ESP Agent Node: {e}")
             return TransitionCallbackReturn.FAILURE
@@ -101,13 +118,16 @@ class ESPAgentNode(LifecycleNode):
 
     def on_deactivate(self, state: State) -> TransitionCallbackReturn:
         try:
+            self.timer.cancel()
             self.destroy_timer(self.timer)
-            self.destroy_subscription(self.sub_vel)
-            self.destroy_subscription(self.sub_joints)
-            self.destroy_subscription(self.sub_led)
             self.pub_imu.on_deactivate(state)
             self.pub_mag.on_deactivate(state)
             self.pub_bat.on_deactivate(state)
+            self.destroy_subscription(self.sub_vel)
+            self.destroy_subscription(self.sub_joints)
+            self.destroy_subscription(self.sub_led)
+            self.destroy_service(self.srv_ledoff)
+            self.destroy_service(self.srv_ptmiddle)
             self.base.deactivate_ser()
         except Exception as e:
             self.get_logger().error(f"Failed to deactivate ESP Agent Node: {e}")
@@ -121,7 +141,6 @@ class ESPAgentNode(LifecycleNode):
             self.destroy_lifecycle_publisher(self.pub_mag)
             self.destroy_lifecycle_publisher(self.pub_bat)
             if self.base is not None:
-                self.base.deactivate_ser()
                 self.base.cleanup()
                 self.base.command_queue.queue.clear()
         except Exception as e:
@@ -169,52 +188,74 @@ class ESPAgentNode(LifecycleNode):
         self.pub_bat.publish(msg)
 
     def timer_callback(self):
-        self.base.feedback_data()
-        timestamp = self.get_clock().now().to_msg()
-        self.publish_imu_data_raw(timestamp)
-        self.publish_imu_mag(timestamp)
-        self.publish_batstate(timestamp)
+        with self.base.lock:
+            timestamp = self.get_clock().now().to_msg()
+            self.publish_imu_data_raw(timestamp)
+            self.publish_imu_mag(timestamp)
+            self.publish_batstate(timestamp)
 
     def cmd_vel_callback(self, msg: Twist):
-        v = msg.linear.x
-        omega = msg.angular.z
-        # Apply minimum threshold to angular velocity if linear velocity is zero
-        if v == 0:
-            if 0 < omega < 0.2:
-                omega = 0.2
-            elif -0.2 < omega < 0:
-                omega = -0.2
-        self.base.send_command({
-            'T': 13, 
-            'X': v, 
-            'Z': omega
-        })
+        with self.base.lock:
+            v = msg.linear.x
+            omega = msg.angular.z
+            # Apply minimum threshold to angular velocity if linear velocity is zero
+            if v == 0:
+                if 0 < omega < 0.2:
+                    omega = 0.2
+                elif -0.2 < omega < 0:
+                    omega = -0.2
+            self.base.send_command({
+                'T': 13, 
+                'X': v, 
+                'Z': omega
+            })
 
     def joint_callback(self, msg: JointState):
-        name = msg.name
-        position = msg.position
-        try:
-            x_rad = position[name.index('pt_base_link_to_pt_link1')]
-            y_rad = position[name.index('pt_link1_to_pt_link2')]
-        except ValueError as e:
-            self.get_logger().error(f"Joint names not found in the message: {e}")
-            return
-        x_degree = math.degrees(x_rad)
-        y_degree = math.degrees(y_rad)
-        self.base.send_command({
-            'T': 134,
-            'X': x_degree,
-            'Y': y_degree,
-            "SX": 600,
-            "SY": 600,
-        })
+        with self.base.lock:
+            name = msg.name
+            position = msg.position
+            try:
+                x_rad = position[name.index('pt_yaw')]
+                y_rad = position[name.index('pt_pitch')]
+            except ValueError as e:
+                self.get_logger().error(f"Joint names not found in the message: {e}")
+                return
+            x_degree = math.degrees(x_rad)
+            y_degree = math.degrees(y_rad)
+            self.base.send_command({
+                'T': 134,
+                'X': x_degree,
+                'Y': y_degree,
+                "SX": 600,
+                "SY": 600,
+            })
 
     def led_callback(self, msg: UInt8MultiArray):
-        self.base.send_command({
-            'T': 132,
-            'IO4': msg.data[0],
-            'IO5': msg.data[1],
-        })
+        with self.base.lock:
+            self.base.send_command({
+                'T': 132,
+                'IO4': msg.data[0],
+                'IO5': msg.data[1],
+            })
+
+    def ledoff_callback(self, request, response):
+        with self.base.lock:
+            self.base.send_command({
+                'T': 132,
+                'IO4': 0,
+                'IO5': 0,
+            })
+            return response
+
+    def ptsetmid_callback(self, request, response):
+        with self.base.lock:
+            self.base.send_command({
+                'T': 141,
+                'X': 2,
+                'Y': 2,
+                'SPD': 0
+            })
+            return response
 
 def main(args=None):
     rclpy.init(args=args)

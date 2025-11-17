@@ -13,5 +13,7 @@ hardware_interface_py.egg-info/zip-safe
 hardware_interface_py/drivers/__init__.py
 hardware_interface_py/drivers/base.py
 hardware_interface_py/nodes/ESP_agent.py
+hardware_interface_py/nodes/ESP_agent_node.py
 hardware_interface_py/nodes/__init__.py
+hardware_interface_py/nodes/ugv_bringup.py
 resource/hardware_interface_py

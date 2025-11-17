@@ -132,10 +132,11 @@ class BaseController:
         # initialize serial port
         self.ser = serial.Serial(uart_dev_set, buad_set, timeout=1)
         self.rl = ReadLine(self.ser)
+        self.lock = threading.Lock()
         self.command_queue = queue.Queue()
         self.command_thread = threading.Thread(target=self.process_commands, daemon=True)
+        self.feedback_thread = threading.Thread(target=self.feedback_data, daemon=True)
         self.stop_event = threading.Event()
-        # self.command_thread.start()
 
         self.base_light_status = 0
         self.head_light_status = 0
@@ -151,12 +152,14 @@ class BaseController:
         if not self.command_thread.is_alive():
             self.stop_event.clear()
             self.command_thread.start()
+        if not self.feedback_thread.is_alive():
+            self.stop_event.clear()
+            self.feedback_thread.start()
 
 
     def deactivate_ser(self):
-        if self.command_thread.is_alive():
+        if self.command_thread.is_alive() or self.feedback_thread.is_alive():
             self.stop_event.set()
-            # self.command_thread.join()
 
 
     def cleanup(self):
@@ -164,16 +167,16 @@ class BaseController:
 
         
     def feedback_data(self):
-        while True:
+        while not self.stop_event.is_set():
             try:
                 # 从串口读取一行数据，解码成 'utf-8' 格式的字符串，并尝试将其转换为 JSON 对象
                 data_recv_buffer = json.loads(self.rl.readline().decode('utf-8'))
                 # 检查解析出的数据中是否包含 'T' 键
                 if 'T' in data_recv_buffer:
-                    # 如果 'T' 的值为 1001，则更新接收到的数据，并跳出循环
+                    # 如果 'T' 的值为 1001，则更新接收到的数据
                     if data_recv_buffer['T'] == 1001:
-                        self.base_data = data_recv_buffer
-                        break
+                        with self.lock:
+                            self.base_data = data_recv_buffer
             # 如果在读取或处理数据时发生异常，则忽略该异常并继续监听下一行数据
             except:
                 pass
