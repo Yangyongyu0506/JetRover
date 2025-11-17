@@ -28,7 +28,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'ESP_agent = hardware_interface_py.nodes.ESP_agent:main',
+            'ESP_agent_lifecycle = hardware_interface_py.nodes.ESP_agent:main',
             'ESP_agent_node = hardware_interface_py.nodes.ESP_agent_node:main',
         ],
     },

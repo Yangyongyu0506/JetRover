@@ -15,3 +15,7 @@ ros2 topic pub /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.5, y: 0.0, z: 0.
 Note: You can't create normal subs in on_configure, and you have to use on_activate(state) to activate pubishers.
 ## 2025.11.17
 To use MultiThreadedExecutor, you must assign num_threads, otherwise it will not be deactivated properly.
+
+Created the node without lifecycle.
+
+Modified the rx funcition so that it can be acsynchronously called.
