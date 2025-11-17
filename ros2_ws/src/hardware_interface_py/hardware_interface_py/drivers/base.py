@@ -156,7 +156,7 @@ class BaseController:
     def deactivate_ser(self):
         if self.command_thread.is_alive():
             self.stop_event.set()
-            self.command_thread.join()
+            # self.command_thread.join()
 
 
     def cleanup(self):

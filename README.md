@@ -10,5 +10,8 @@ ros2 run hardware_interface_py ESP_agent
 ros2 lifecycle get /ESP_agent_node
 ros2 lifecycle set /ESP_agent_node configure
 ros2 lifecycle set /ESP_agent_node activate
+ros2 topic pub /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.5, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}"
 ```
-Note: You can't create normal subs in on_configure.
+Note: You can't create normal subs in on_configure, and you have to use on_activate(state) to activate pubishers.
+## 2025.11.17
+To use MultiThreadedExecutor, you must assign num_threads, otherwise it will not be deactivated properly.

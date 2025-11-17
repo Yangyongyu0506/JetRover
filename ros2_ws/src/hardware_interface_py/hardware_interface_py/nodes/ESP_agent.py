@@ -1,14 +1,15 @@
 import rclpy
 from rclpy.lifecycle import LifecycleNode
 from rclpy.lifecycle import State, TransitionCallbackReturn
-from lifecycle_msgs.msg import State as LifecycleState
+from rclpy.callback_groups import MutuallyExclusiveCallbackGroup, ReentrantCallbackGroup
+from rclpy.executors import MultiThreadedExecutor
 from hardware_interface_py.drivers.base import BaseController
 from ament_index_python.packages import get_package_share_directory
 import os
 import math
 from sensor_msgs.msg import Imu, MagneticField, JointState, BatteryState
 from geometry_msgs.msg import Twist
-from std_msgs.msg import Float32MultiArray, Float32
+from std_msgs.msg import UInt8MultiArray
 
 class ESPAgentNode(LifecycleNode):
     def __init__(self):
@@ -16,43 +17,45 @@ class ESPAgentNode(LifecycleNode):
         self.declare_parameter('uart_interface', '/dev/ttyTHS1')
         self.declare_parameter('baud_rate', 115200)
         self.declare_parameter('config_path', 'base_config.yaml')
-        self.declare_parameter('base_pub_freq', 50) # in Hz
+        self.declare_parameter('base_pub_freq', 10) # in Hz
         self.get_logger().info("ESP Agent Node has been created.")
 
     def on_configure(self, state: State) -> TransitionCallbackReturn:
-        # Initialize BaseController with parameters
-        curpath = get_package_share_directory('hardware_interface_py')
-        config_path = os.path.join(
-            curpath, 
-            'config', 
-            self.get_parameter('config_path').get_parameter_value().string_value
-        )
         try:
+            # Initialize BaseController with parameters
+            curpath = get_package_share_directory('hardware_interface_py')
+            config_path = os.path.join(
+                curpath, 
+                'config', 
+                self.get_parameter('config_path').get_parameter_value().string_value
+            )
             self.base = BaseController(
                 self.get_parameter('uart_interface').get_parameter_value().string_value,
                 self.get_parameter('baud_rate').get_parameter_value().integer_value,
                 config_path
             )
+            # Create callback groups
+            self.mtxcbgroup = MutuallyExclusiveCallbackGroup()
+            self.retcbgroup = ReentrantCallbackGroup()
+            # Initialize the publishers
+            self.pub_imu = self.create_lifecycle_publisher(
+                Imu, 
+                'imu/data_raw', 
+                10
+            )
+            self.pub_mag = self.create_lifecycle_publisher(
+                MagneticField, 
+                'imu/mag', 
+                10
+            )
+            self.pub_bat = self.create_lifecycle_publisher(
+                BatteryState, 
+                'battery_state', 
+                10
+            )
         except Exception as e:
-            self.get_logger().error(f"Failed to initialize BaseController: {e}")
-            return TransitionCallbackReturn.FAILURE
-        # Initialize the publishers
-        self.pub_imu = self.create_lifecycle_publisher(
-            Imu, 
-            'imu/data_raw', 
-            10
-        )
-        self.pub_mag = self.create_lifecycle_publisher(
-            MagneticField, 
-            'imu/mag', 
-            10
-        )
-        self.pub_bat = self.create_lifecycle_publisher(
-            BatteryState, 
-            'battery_state', 
-            10
-        )
-
+            self.get_logger().error(f"Failed to configure ESP Agent Node: {e}")
+            return TransitionCallbackReturn.FAILURE 
         self.get_logger().info("ESP Agent Node has been configured.")
         return TransitionCallbackReturn.SUCCESS
 
@@ -65,26 +68,30 @@ class ESPAgentNode(LifecycleNode):
             # Initialize the timer
             self.timer = self.create_timer(
                 1 / self.get_parameter('base_pub_freq').get_parameter_value().integer_value,
-                self.timer_callback
+                self.timer_callback,
+                callback_group=self.retcbgroup
             )
             # Initialize the subscribers
             self.sub_vel = self.create_subscription(
                 Twist,
                 'cmd_vel',
                 self.cmd_vel_callback,
-                10
+                10,
+                callback_group=self.mtxcbgroup
             )
             self.sub_joints = self.create_subscription(
                 JointState,
                 'pan_tilt',
                 self.joint_callback,
-                10
+                10,
+                callback_group=self.mtxcbgroup
             )
             self.sub_led = self.create_subscription(
-                Float32MultiArray,
+                UInt8MultiArray,
                 'led_ctrl',
                 self.led_callback,
-                10
+                10,
+                callback_group=self.mtxcbgroup
             )
         except Exception as e:
             self.get_logger().error(f"Failed to activate ESP Agent Node: {e}")
@@ -93,30 +100,39 @@ class ESPAgentNode(LifecycleNode):
         return TransitionCallbackReturn.SUCCESS
 
     def on_deactivate(self, state: State) -> TransitionCallbackReturn:
-        self.destroy_timer(self.timer)
-        self.pub_imu.on_deactivate(state)
-        self.pub_mag.on_deactivate(state)
-        self.pub_bat.on_deactivate(state)
-        self.base.deactivate_ser()
+        try:
+            self.destroy_timer(self.timer)
+            self.destroy_subscription(self.sub_vel)
+            self.destroy_subscription(self.sub_joints)
+            self.destroy_subscription(self.sub_led)
+            self.pub_imu.on_deactivate(state)
+            self.pub_mag.on_deactivate(state)
+            self.pub_bat.on_deactivate(state)
+            self.base.deactivate_ser()
+        except Exception as e:
+            self.get_logger().error(f"Failed to deactivate ESP Agent Node: {e}")
+            return TransitionCallbackReturn.FAILURE
         self.get_logger().info("ESP Agent Node has been deactivated.")
         return TransitionCallbackReturn.SUCCESS
     
     def on_cleanup(self, state: State) -> TransitionCallbackReturn:
-        if self.timer is not None:
-            self.timer.destroy()
-        # CharGPT suggested removing these lines below to avoid double cleanup
-        # if self.pub_imu is not None:
-        #     self.pub_imu.destroy()
-        # if self.pub_mag is not None:
-        #     self.pub_mag.destroy()
-        # if self.sub_vel is not None:
-        #     self.sub_vel.destroy()
-        if self.base is not None:
-            self.base.deactivate_ser()
-            self.base.cleanup()
-            self.base.command_queue.clear()
+        try:
+            self.destroy_lifecycle_publisher(self.pub_imu)
+            self.destroy_lifecycle_publisher(self.pub_mag)
+            self.destroy_lifecycle_publisher(self.pub_bat)
+            if self.base is not None:
+                self.base.deactivate_ser()
+                self.base.cleanup()
+                self.base.command_queue.queue.clear()
+        except Exception as e:
+            self.get_logger().error(f"Failed to cleanup ESP Agent Node: {e}")
+            return TransitionCallbackReturn.FAILURE
         self.get_logger().info("ESP Agent Node has been cleaned up.")
         return TransitionCallbackReturn.SUCCESS
+
+    def on_shutdown(self, state: State) -> TransitionCallbackReturn:
+        self.get_logger().info("ESP Agent Node has been shut down. You can now press Ctrl+C to exit.")
+        return super().on_shutdown(state)
 
     def publish_imu_data_raw(self, timestamp):
         msg = Imu()
@@ -160,9 +176,6 @@ class ESPAgentNode(LifecycleNode):
         self.publish_batstate(timestamp)
 
     def cmd_vel_callback(self, msg: Twist):
-        if self.get_current_state().id != LifecycleState.PRIMARY_STATE_ACTIVE:
-            # self.get_logger().warn("Received cmd_vel while node is not active.")
-            return
         v = msg.linear.x
         omega = msg.angular.z
         # Apply minimum threshold to angular velocity if linear velocity is zero
@@ -178,9 +191,6 @@ class ESPAgentNode(LifecycleNode):
         })
 
     def joint_callback(self, msg: JointState):
-        if self.get_current_state().id != LifecycleState.PRIMARY_STATE_ACTIVE:
-            # self.get_logger().warn("Received cmd_vel while node is not active.")
-            return
         name = msg.name
         position = msg.position
         try:
@@ -199,10 +209,7 @@ class ESPAgentNode(LifecycleNode):
             "SY": 600,
         })
 
-    def led_callback(self, msg: Float32MultiArray):
-        if self.get_current_state().id != LifecycleState.PRIMARY_STATE_ACTIVE:
-            # self.get_logger().warn("Received led_ctrl while node is not active.")
-            return
+    def led_callback(self, msg: UInt8MultiArray):
         self.base.send_command({
             'T': 132,
             'IO4': msg.data[0],
@@ -212,6 +219,9 @@ class ESPAgentNode(LifecycleNode):
 def main(args=None):
     rclpy.init(args=args)
     esp_agent_node = ESPAgentNode()
-    rclpy.spin(esp_agent_node)
+    executor = MultiThreadedExecutor(num_threads=4)
+    executor.add_node(esp_agent_node)
+    executor.spin()
+    executor.remove_node(esp_agent_node)
     esp_agent_node.destroy_node()
     rclpy.shutdown()
