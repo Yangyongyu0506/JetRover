@@ -1,0 +1,178 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-51e4b8cfc4fccbfa38f5.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "image_proc",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "crop_decimate::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-crop_decimate-df4ddb41593e39d3716e.json",
+					"name" : "crop_decimate",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "crop_decimate_node::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-crop_decimate_node-145f9d224acdd4f5a02a.json",
+					"name" : "crop_decimate_node",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "crop_non_zero::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-crop_non_zero-59b1fb25cd610f6ce523.json",
+					"name" : "crop_non_zero",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "crop_non_zero_node::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-crop_non_zero_node-d0b6819fded5a40357d7.json",
+					"name" : "crop_non_zero_node",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "debayer::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-debayer-2ff78c0df216092bd4f7.json",
+					"name" : "debayer",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "debayer_node::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-debayer_node-07c1454586fbd013cadf.json",
+					"name" : "debayer_node",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "image_proc::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-image_proc-1acfecb8b10781b8a2c6.json",
+					"name" : "image_proc",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "image_proc_exe::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-image_proc_exe-ba20ddd7ab38f7af62a5.json",
+					"name" : "image_proc_exe",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "image_proc_uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-image_proc_uninstall-53ecffd0bc52f373a226.json",
+					"name" : "image_proc_uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "rectify::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-rectify-417d5d6b0b78c4633f12.json",
+					"name" : "rectify",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "rectify_node::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-rectify_node-d74596bc3167d75a2314.json",
+					"name" : "rectify_node",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "resize::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-resize-2e000e60501ace5de087.json",
+					"name" : "resize",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "resize_node::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-resize_node-d37c4aec71a3c85b09d4.json",
+					"name" : "resize_node",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-afa9cd9773fefae5cd6a.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/nvidia/UGV_Rover/ros2_ws/build/image_proc",
+		"source" : "/home/nvidia/UGV_Rover/ros2_ws/src/image_pipeline/image_proc"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

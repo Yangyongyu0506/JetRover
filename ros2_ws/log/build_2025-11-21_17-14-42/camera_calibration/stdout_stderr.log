@@ -1,0 +1,23 @@
+/home/nvidia/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+running develop
+running egg_info
+creating src/camera_calibration.egg-info
+writing src/camera_calibration.egg-info/PKG-INFO
+writing dependency_links to src/camera_calibration.egg-info/dependency_links.txt
+writing entry points to src/camera_calibration.egg-info/entry_points.txt
+writing requirements to src/camera_calibration.egg-info/requires.txt
+writing top-level names to src/camera_calibration.egg-info/top_level.txt
+writing manifest file 'src/camera_calibration.egg-info/SOURCES.txt'
+reading manifest file 'src/camera_calibration.egg-info/SOURCES.txt'
+writing manifest file 'src/camera_calibration.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/nvidia/UGV_Rover/ros2_ws/install/camera_calibration/lib/python3.10/site-packages/camera-calibration.egg-link (link to src)
+Installing cameracalibrator script to /home/nvidia/UGV_Rover/ros2_ws/install/camera_calibration/lib/camera_calibration
+Installing cameracheck script to /home/nvidia/UGV_Rover/ros2_ws/install/camera_calibration/lib/camera_calibration
+
+Installed /home/nvidia/UGV_Rover/ros2_ws/build/camera_calibration/src
+running symlink_data
+creating /home/nvidia/UGV_Rover/ros2_ws/install/camera_calibration/share/ament_index/resource_index/packages
+symbolically linking /home/nvidia/UGV_Rover/ros2_ws/build/camera_calibration/resource/camera_calibration -> /home/nvidia/UGV_Rover/ros2_ws/install/camera_calibration/share/ament_index/resource_index/packages
+symbolically linking /home/nvidia/UGV_Rover/ros2_ws/build/camera_calibration/package.xml -> /home/nvidia/UGV_Rover/ros2_ws/install/camera_calibration/share/camera_calibration

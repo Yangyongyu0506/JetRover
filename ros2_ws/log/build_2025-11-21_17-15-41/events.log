@@ -1,0 +1,775 @@
+[0.000000] (-) TimerEvent: {}
+[0.000543] (-) JobUnselected: {'identifier': 'camera_calibration'}
+[0.000948] (-) JobUnselected: {'identifier': 'depth_image_proc'}
+[0.001168] (-) JobUnselected: {'identifier': 'hardware_interface'}
+[0.001208] (-) JobUnselected: {'identifier': 'hardware_interface_py'}
+[0.001424] (-) JobUnselected: {'identifier': 'image_pipeline'}
+[0.001495] (-) JobUnselected: {'identifier': 'image_publisher'}
+[0.001617] (-) JobUnselected: {'identifier': 'image_rotate'}
+[0.001689] (-) JobUnselected: {'identifier': 'image_view'}
+[0.001747] (-) JobUnselected: {'identifier': 'ldlidar_stl_ros2'}
+[0.001797] (-) JobUnselected: {'identifier': 'stereo_image_proc'}
+[0.001846] (-) JobUnselected: {'identifier': 'tracetools_image_pipeline'}
+[0.002145] (image_proc) JobQueued: {'identifier': 'image_proc', 'dependencies': OrderedDict([('tracetools_image_pipeline', '/home/nvidia/UGV_Rover/ros2_ws/install/tracetools_image_pipeline')])}
+[0.002224] (image_proc) JobStarted: {'identifier': 'image_proc'}
+[0.016319] (image_proc) JobProgress: {'identifier': 'image_proc', 'progress': 'cmake'}
+[0.017205] (image_proc) Command: {'cmd': ['/usr/bin/cmake', '/home/nvidia/UGV_Rover/ros2_ws/src/image_pipeline/image_proc', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/home/nvidia/UGV_Rover/ros2_ws/install/image_proc'], 'cwd': '/home/nvidia/UGV_Rover/ros2_ws/build/image_proc', 'env': OrderedDict([('PYTHON_BASIC_REPL', '1'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'zh_CN:zh'), ('USER', 'nvidia'), ('SSH_CLIENT', '100.69.168.86 50576 22'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/nvidia/.vscode-server/cli/servers/Stable-1e3c50d64110be466c0b4a45222e81d2c9352888/server/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/nvidia/UGV_Rover/ros2_ws/install/tracetools_image_pipeline/lib:/usr/local/lib:/usr/local/cuda-12.6/lib64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/lib:/usr/local/cuda-12.6/lib64'), ('BROWSER', '/home/nvidia/.vscode-server/cli/servers/Stable-1e3c50d64110be466c0b4a45222e81d2c9352888/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/nvidia'), ('OLDPWD', '/home/nvidia/UGV_Rover/ros2_ws/src'), ('TERM_PROGRAM_VERSION', '1.106.2'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-c1a5def7-23a4-4066-aec6-d3e1bb2032c7.sock'), ('JETSON_L4T', '36.4.7'), ('ROS_PYTHON_VERSION', '3'), ('JETSON_MODEL', 'NVIDIA Jetson Orin Nano Engineering Reference Developer Kit Super'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/nvidia/.vscode-server/cli/servers/Stable-1e3c50d64110be466c0b4a45222e81d2c9352888/server/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/home/nvidia/.vscode-server/cli/servers/Stable-1e3c50d64110be466c0b4a45222e81d2c9352888/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('PYDEVD_DISABLE_FILE_VALIDATION', '1'), ('BUNDLED_DEBUGPY_PATH', '/home/nvidia/.vscode-server/extensions/ms-python.debugpy-2025.16.0/bundled/libs/debugpy'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'nvidia'), ('JETSON_MODULE', 'NVIDIA Jetson Orin Nano (Developer kit)'), ('JETSON_SERIAL_NUMBER', '1422425023452'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '3'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/usr/local/cuda-12.6/bin:/home/nvidia/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/home/nvidia/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/home/nvidia/.vscode-server/cli/servers/Stable-1e3c50d64110be466c0b4a45222e81d2c9352888/server/bin/remote-cli:/home/nvidia/.local/bin:/opt/ros/humble/bin:/usr/local/cuda-12.6/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/nvidia/.vscode-server/extensions/ms-python.debugpy-2025.16.0/bundled/scripts/noConfigScripts'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('VSCODE_DEBUGPY_ADAPTER_ENDPOINTS', '/home/nvidia/.vscode-server/extensions/ms-python.debugpy-2025.16.0/.noConfigDebugAdapterEndpoints/endpoint-a4a24136a0031300.txt'), ('LANG', 'zh_CN.UTF-8'), ('PYTHONSTARTUP', '/home/nvidia/.vscode-server/data/User/workspaceStorage/e310b22dc16e44f14a4be4bb7819128f/ms-python.python/pythonrc.py'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('JETSON_SOC', 'tegra234'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-0f62094113.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/nvidia/UGV_Rover/ros2_ws/install/tracetools_image_pipeline:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('JETSON_CUDA_ARCH_BIN', '8.7'), ('PWD', '/home/nvidia/UGV_Rover/ros2_ws/build/image_proc'), ('SSH_CONNECTION', '100.69.168.86 50576 100.127.226.9 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/usr/local/lib/python3.10/site-packages/:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages:/usr/local/lib/python3.10/site-packages/:'), ('COLCON', '1'), ('JETSON_JETPACK', ''), ('JETSON_P_NUMBER', 'p3767-0005'), ('CMAKE_PREFIX_PATH', '/home/nvidia/UGV_Rover/ros2_ws/install/tracetools_image_pipeline:/opt/ros/humble')]), 'shell': False}
+[0.099570] (-) TimerEvent: {}
+[0.117402] (image_proc) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.199743] (-) TimerEvent: {}
+[0.226651] (image_proc) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[0.246025] (image_proc) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.299932] (-) TimerEvent: {}
+[0.392900] (image_proc) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.400018] (-) TimerEvent: {}
+[0.417653] (image_proc) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.418608] (image_proc) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.419953] (image_proc) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.428133] (image_proc) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.500231] (-) TimerEvent: {}
+[0.574488] (image_proc) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.600129] (image_proc) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.600595] (-) TimerEvent: {}
+[0.601144] (image_proc) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.602832] (image_proc) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.609884] (image_proc) StdoutLine: {'line': b'-- Found ament_cmake_auto: 1.3.12 (/opt/ros/humble/share/ament_cmake_auto/cmake)\n'}
+[0.700771] (-) TimerEvent: {}
+[0.801414] (-) TimerEvent: {}
+[0.902138] (-) TimerEvent: {}
+[1.002721] (-) TimerEvent: {}
+[1.103336] (-) TimerEvent: {}
+[1.204018] (-) TimerEvent: {}
+[1.304596] (-) TimerEvent: {}
+[1.358665] (image_proc) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[1.404761] (-) TimerEvent: {}
+[1.492073] (image_proc) StdoutLine: {'line': b'-- Override CMake install command with custom implementation using symlinks instead of copying resources\n'}
+[1.504858] (-) TimerEvent: {}
+[1.605437] (-) TimerEvent: {}
+[1.706110] (-) TimerEvent: {}
+[1.760407] (image_proc) StdoutLine: {'line': b'-- Looking for pthread.h\n'}
+[1.806295] (-) TimerEvent: {}
+[1.907024] (-) TimerEvent: {}
+[1.909874] (image_proc) StdoutLine: {'line': b'-- Looking for pthread.h - found\n'}
+[1.910500] (image_proc) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[2.007163] (-) TimerEvent: {}
+[2.057532] (image_proc) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success\n'}
+[2.061064] (image_proc) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[2.107372] (-) TimerEvent: {}
+[2.120061] (image_proc) StdoutLine: {'line': b'-- Found CUDA: /usr/local/cuda-12.6 (found suitable exact version "12.6") \n'}
+[2.207641] (-) TimerEvent: {}
+[2.213206] (image_proc) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[2.221619] (image_proc) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[2.236798] (image_proc) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[2.257790] (image_proc) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[2.284673] (image_proc) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[2.307718] (-) TimerEvent: {}
+[2.408197] (-) TimerEvent: {}
+[2.468201] (image_proc) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[2.472287] (image_proc) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.9 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[2.508308] (-) TimerEvent: {}
+[2.608875] (-) TimerEvent: {}
+[2.610814] (image_proc) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/aarch64-linux-gnu/libcrypto.so (found version "3.0.2")  \n'}
+[2.662229] (image_proc) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/humble/include  \n'}
+[2.709029] (-) TimerEvent: {}
+[2.732883] (image_proc) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[2.809185] (-) TimerEvent: {}
+[2.909817] (-) TimerEvent: {}
+[2.925780] (image_proc) StdoutLine: {'line': b'-- Found OpenCV: /usr/local (found version "4.10.0") \n'}
+[2.954246] (image_proc) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.12.14 (/opt/ros/humble/share/ament_lint_auto/cmake)\n'}
+[2.977998] (image_proc) StderrLine: {'line': b'\x1b[0mIn this package, headers install destination is set to `include` by ament_auto_package. It is recommended to install `include/image_proc` instead and will be the default behavior of ament_auto_package from ROS 2 Kilted Kaiju. On distributions before Kilted, ament_auto_package behaves the same way when you use USE_SCOPED_HEADER_INSTALL_DIR option.\x1b[0m\n'}
+[2.988787] (image_proc) StdoutLine: {'line': b"-- Added test 'copyright' to check source files copyright and LICENSE\n"}
+[2.991881] (image_proc) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[2.993177] (image_proc) StdoutLine: {'line': b'-- Configured cppcheck include dirs: /home/nvidia/UGV_Rover/ros2_ws/src/image_pipeline/image_proc/include\n'}
+[2.993364] (image_proc) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[2.995901] (image_proc) StdoutLine: {'line': b"-- Added test 'cpplint' to check C / C++ code against the Google style\n"}
+[2.996052] (image_proc) StdoutLine: {'line': b'-- Configured cpplint exclude dirs and/or files: \n'}
+[2.996877] (image_proc) StdoutLine: {'line': b"-- Added test 'flake8' to check Python code syntax and style conventions\n"}
+[2.998100] (image_proc) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[2.998992] (image_proc) StdoutLine: {'line': b"-- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257\n"}
+[3.001501] (image_proc) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[3.001644] (image_proc) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[3.002492] (image_proc) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[3.008559] (image_proc) StdoutLine: {'line': b'-- Configuring done\n'}
+[3.009849] (-) TimerEvent: {}
+[3.110273] (-) TimerEvent: {}
+[3.133720] (image_proc) StdoutLine: {'line': b'-- Generating done\n'}
+[3.173469] (image_proc) StdoutLine: {'line': b'-- Build files have been written to: /home/nvidia/UGV_Rover/ros2_ws/build/image_proc\n'}
+[3.204378] (image_proc) CommandEnded: {'returncode': 0}
+[3.206261] (image_proc) JobProgress: {'identifier': 'image_proc', 'progress': 'build'}
+[3.208785] (image_proc) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/nvidia/UGV_Rover/ros2_ws/build/image_proc', '--', '-j6', '-l6'], 'cwd': '/home/nvidia/UGV_Rover/ros2_ws/build/image_proc', 'env': OrderedDict([('PYTHON_BASIC_REPL', '1'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'zh_CN:zh'), ('USER', 'nvidia'), ('SSH_CLIENT', '100.69.168.86 50576 22'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/nvidia/.vscode-server/cli/servers/Stable-1e3c50d64110be466c0b4a45222e81d2c9352888/server/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/nvidia/UGV_Rover/ros2_ws/install/tracetools_image_pipeline/lib:/usr/local/lib:/usr/local/cuda-12.6/lib64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/lib:/usr/local/cuda-12.6/lib64'), ('BROWSER', '/home/nvidia/.vscode-server/cli/servers/Stable-1e3c50d64110be466c0b4a45222e81d2c9352888/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/nvidia'), ('OLDPWD', '/home/nvidia/UGV_Rover/ros2_ws/src'), ('TERM_PROGRAM_VERSION', '1.106.2'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-c1a5def7-23a4-4066-aec6-d3e1bb2032c7.sock'), ('JETSON_L4T', '36.4.7'), ('ROS_PYTHON_VERSION', '3'), ('JETSON_MODEL', 'NVIDIA Jetson Orin Nano Engineering Reference Developer Kit Super'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/nvidia/.vscode-server/cli/servers/Stable-1e3c50d64110be466c0b4a45222e81d2c9352888/server/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/home/nvidia/.vscode-server/cli/servers/Stable-1e3c50d64110be466c0b4a45222e81d2c9352888/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('PYDEVD_DISABLE_FILE_VALIDATION', '1'), ('BUNDLED_DEBUGPY_PATH', '/home/nvidia/.vscode-server/extensions/ms-python.debugpy-2025.16.0/bundled/libs/debugpy'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'nvidia'), ('JETSON_MODULE', 'NVIDIA Jetson Orin Nano (Developer kit)'), ('JETSON_SERIAL_NUMBER', '1422425023452'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '3'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/usr/local/cuda-12.6/bin:/home/nvidia/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/home/nvidia/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/home/nvidia/.vscode-server/cli/servers/Stable-1e3c50d64110be466c0b4a45222e81d2c9352888/server/bin/remote-cli:/home/nvidia/.local/bin:/opt/ros/humble/bin:/usr/local/cuda-12.6/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/nvidia/.vscode-server/extensions/ms-python.debugpy-2025.16.0/bundled/scripts/noConfigScripts'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('VSCODE_DEBUGPY_ADAPTER_ENDPOINTS', '/home/nvidia/.vscode-server/extensions/ms-python.debugpy-2025.16.0/.noConfigDebugAdapterEndpoints/endpoint-a4a24136a0031300.txt'), ('LANG', 'zh_CN.UTF-8'), ('PYTHONSTARTUP', '/home/nvidia/.vscode-server/data/User/workspaceStorage/e310b22dc16e44f14a4be4bb7819128f/ms-python.python/pythonrc.py'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('JETSON_SOC', 'tegra234'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-0f62094113.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/nvidia/UGV_Rover/ros2_ws/install/tracetools_image_pipeline:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('JETSON_CUDA_ARCH_BIN', '8.7'), ('PWD', '/home/nvidia/UGV_Rover/ros2_ws/build/image_proc'), ('SSH_CONNECTION', '100.69.168.86 50576 100.127.226.9 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/usr/local/lib/python3.10/site-packages/:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages:/usr/local/lib/python3.10/site-packages/:'), ('COLCON', '1'), ('JETSON_JETPACK', ''), ('JETSON_P_NUMBER', 'p3767-0005'), ('CMAKE_PREFIX_PATH', '/home/nvidia/UGV_Rover/ros2_ws/install/tracetools_image_pipeline:/opt/ros/humble')]), 'shell': False}
+[3.211792] (-) TimerEvent: {}
+[3.312886] (-) TimerEvent: {}
+[3.319657] (image_proc) StdoutLine: {'line': b'[  4%] \x1b[32mBuilding CXX object CMakeFiles/rectify_node.dir/rclcpp_components/node_main_rectify_node.cpp.o\x1b[0m\n'}
+[3.323860] (image_proc) StdoutLine: {'line': b'[ 12%] \x1b[32mBuilding CXX object CMakeFiles/image_proc.dir/src/image_proc/processor.cpp.o\x1b[0m\n'}
+[3.324352] (image_proc) StdoutLine: {'line': b'[ 12%] \x1b[32mBuilding CXX object CMakeFiles/resize_node.dir/rclcpp_components/node_main_resize_node.cpp.o\x1b[0m\n'}
+[3.324525] (image_proc) StdoutLine: {'line': b'[ 16%] \x1b[32mBuilding CXX object CMakeFiles/debayer_node.dir/rclcpp_components/node_main_debayer_node.cpp.o\x1b[0m\n'}
+[3.336437] (image_proc) StdoutLine: {'line': b'[ 20%] \x1b[32mBuilding CXX object CMakeFiles/crop_non_zero_node.dir/rclcpp_components/node_main_crop_non_zero_node.cpp.o\x1b[0m\n'}
+[3.344846] (image_proc) StdoutLine: {'line': b'[ 24%] \x1b[32mBuilding CXX object CMakeFiles/crop_decimate_node.dir/rclcpp_components/node_main_crop_decimate_node.cpp.o\x1b[0m\n'}
+[3.413084] (-) TimerEvent: {}
+[3.513787] (-) TimerEvent: {}
+[3.614451] (-) TimerEvent: {}
+[3.715118] (-) TimerEvent: {}
+[3.815794] (-) TimerEvent: {}
+[3.916533] (-) TimerEvent: {}
+[4.017269] (-) TimerEvent: {}
+[4.118030] (-) TimerEvent: {}
+[4.218790] (-) TimerEvent: {}
+[4.319471] (-) TimerEvent: {}
+[4.420180] (-) TimerEvent: {}
+[4.520928] (-) TimerEvent: {}
+[4.621749] (-) TimerEvent: {}
+[4.722473] (-) TimerEvent: {}
+[4.823252] (-) TimerEvent: {}
+[4.924021] (-) TimerEvent: {}
+[5.024758] (-) TimerEvent: {}
+[5.125544] (-) TimerEvent: {}
+[5.226297] (-) TimerEvent: {}
+[5.327013] (-) TimerEvent: {}
+[5.427726] (-) TimerEvent: {}
+[5.528527] (-) TimerEvent: {}
+[5.629350] (-) TimerEvent: {}
+[5.730146] (-) TimerEvent: {}
+[5.830902] (-) TimerEvent: {}
+[5.931625] (-) TimerEvent: {}
+[6.032397] (-) TimerEvent: {}
+[6.133106] (-) TimerEvent: {}
+[6.233852] (-) TimerEvent: {}
+[6.334580] (-) TimerEvent: {}
+[6.435292] (-) TimerEvent: {}
+[6.536041] (-) TimerEvent: {}
+[6.636767] (-) TimerEvent: {}
+[6.737521] (-) TimerEvent: {}
+[6.838304] (-) TimerEvent: {}
+[6.939056] (-) TimerEvent: {}
+[7.039766] (-) TimerEvent: {}
+[7.140479] (-) TimerEvent: {}
+[7.233091] (image_proc) StdoutLine: {'line': b'[ 28%] \x1b[32m\x1b[1mLinking CXX shared library libimage_proc.so\x1b[0m\n'}
+[7.240667] (-) TimerEvent: {}
+[7.341401] (-) TimerEvent: {}
+[7.442230] (-) TimerEvent: {}
+[7.542994] (-) TimerEvent: {}
+[7.643774] (-) TimerEvent: {}
+[7.716952] (image_proc) StdoutLine: {'line': b'[ 28%] Built target image_proc\n'}
+[7.743996] (-) TimerEvent: {}
+[7.771871] (image_proc) StdoutLine: {'line': b'[ 32%] \x1b[32mBuilding CXX object CMakeFiles/rectify.dir/src/rectify.cpp.o\x1b[0m\n'}
+[7.844217] (-) TimerEvent: {}
+[7.944954] (-) TimerEvent: {}
+[8.045747] (-) TimerEvent: {}
+[8.146524] (-) TimerEvent: {}
+[8.247250] (-) TimerEvent: {}
+[8.348012] (-) TimerEvent: {}
+[8.448931] (-) TimerEvent: {}
+[8.549625] (-) TimerEvent: {}
+[8.650580] (-) TimerEvent: {}
+[8.751325] (-) TimerEvent: {}
+[8.852089] (-) TimerEvent: {}
+[8.952871] (-) TimerEvent: {}
+[9.053655] (-) TimerEvent: {}
+[9.154450] (-) TimerEvent: {}
+[9.255177] (-) TimerEvent: {}
+[9.355968] (-) TimerEvent: {}
+[9.456760] (-) TimerEvent: {}
+[9.557551] (-) TimerEvent: {}
+[9.658295] (-) TimerEvent: {}
+[9.759014] (-) TimerEvent: {}
+[9.859810] (-) TimerEvent: {}
+[9.960613] (-) TimerEvent: {}
+[10.061405] (-) TimerEvent: {}
+[10.162194] (-) TimerEvent: {}
+[10.262923] (-) TimerEvent: {}
+[10.363679] (-) TimerEvent: {}
+[10.464654] (-) TimerEvent: {}
+[10.565641] (-) TimerEvent: {}
+[10.666400] (-) TimerEvent: {}
+[10.767188] (-) TimerEvent: {}
+[10.867975] (-) TimerEvent: {}
+[10.968757] (-) TimerEvent: {}
+[11.069533] (-) TimerEvent: {}
+[11.170293] (-) TimerEvent: {}
+[11.271045] (-) TimerEvent: {}
+[11.371806] (-) TimerEvent: {}
+[11.473304] (-) TimerEvent: {}
+[11.574062] (-) TimerEvent: {}
+[11.674820] (-) TimerEvent: {}
+[11.775551] (-) TimerEvent: {}
+[11.876262] (-) TimerEvent: {}
+[11.976980] (-) TimerEvent: {}
+[12.061960] (image_proc) StdoutLine: {'line': b'[ 36%] \x1b[32m\x1b[1mLinking CXX executable crop_non_zero_node\x1b[0m\n'}
+[12.077184] (-) TimerEvent: {}
+[12.177873] (-) TimerEvent: {}
+[12.278581] (-) TimerEvent: {}
+[12.379328] (-) TimerEvent: {}
+[12.413629] (image_proc) StdoutLine: {'line': b'[ 36%] Built target crop_non_zero_node\n'}
+[12.425413] (image_proc) StdoutLine: {'line': b'[ 40%] \x1b[32m\x1b[1mLinking CXX executable rectify_node\x1b[0m\n'}
+[12.479567] (-) TimerEvent: {}
+[12.526500] (image_proc) StdoutLine: {'line': b'[ 44%] \x1b[32m\x1b[1mLinking CXX executable crop_decimate_node\x1b[0m\n'}
+[12.550695] (image_proc) StdoutLine: {'line': b'[ 48%] \x1b[32m\x1b[1mLinking CXX executable resize_node\x1b[0m\n'}
+[12.579796] (-) TimerEvent: {}
+[12.680524] (-) TimerEvent: {}
+[12.761143] (image_proc) StdoutLine: {'line': b'[ 48%] Built target rectify_node\n'}
+[12.780734] (-) TimerEvent: {}
+[12.865293] (image_proc) StdoutLine: {'line': b'[ 48%] Built target resize_node\n'}
+[12.880913] (-) TimerEvent: {}
+[12.887679] (image_proc) StdoutLine: {'line': b'[ 48%] Built target crop_decimate_node\n'}
+[12.981122] (-) TimerEvent: {}
+[12.999074] (image_proc) StdoutLine: {'line': b'[ 52%] \x1b[32m\x1b[1mLinking CXX executable debayer_node\x1b[0m\n'}
+[13.081293] (-) TimerEvent: {}
+[13.181982] (-) TimerEvent: {}
+[13.239903] (image_proc) StdoutLine: {'line': b'[ 52%] Built target debayer_node\n'}
+[13.282167] (-) TimerEvent: {}
+[13.382963] (-) TimerEvent: {}
+[13.483794] (-) TimerEvent: {}
+[13.584645] (-) TimerEvent: {}
+[13.685490] (-) TimerEvent: {}
+[13.786350] (-) TimerEvent: {}
+[13.887188] (-) TimerEvent: {}
+[13.988020] (-) TimerEvent: {}
+[14.088839] (-) TimerEvent: {}
+[14.189717] (-) TimerEvent: {}
+[14.290565] (-) TimerEvent: {}
+[14.391378] (-) TimerEvent: {}
+[14.492178] (-) TimerEvent: {}
+[14.593029] (-) TimerEvent: {}
+[14.693885] (-) TimerEvent: {}
+[14.794724] (-) TimerEvent: {}
+[14.895562] (-) TimerEvent: {}
+[14.996402] (-) TimerEvent: {}
+[15.097244] (-) TimerEvent: {}
+[15.198101] (-) TimerEvent: {}
+[15.298931] (-) TimerEvent: {}
+[15.399735] (-) TimerEvent: {}
+[15.500497] (-) TimerEvent: {}
+[15.601337] (-) TimerEvent: {}
+[15.702181] (-) TimerEvent: {}
+[15.802977] (-) TimerEvent: {}
+[15.903784] (-) TimerEvent: {}
+[16.004608] (-) TimerEvent: {}
+[16.105423] (-) TimerEvent: {}
+[16.206295] (-) TimerEvent: {}
+[16.307127] (-) TimerEvent: {}
+[16.407952] (-) TimerEvent: {}
+[16.508797] (-) TimerEvent: {}
+[16.609628] (-) TimerEvent: {}
+[16.710466] (-) TimerEvent: {}
+[16.811262] (-) TimerEvent: {}
+[16.912035] (-) TimerEvent: {}
+[17.012855] (-) TimerEvent: {}
+[17.113722] (-) TimerEvent: {}
+[17.214566] (-) TimerEvent: {}
+[17.315390] (-) TimerEvent: {}
+[17.416181] (-) TimerEvent: {}
+[17.516997] (-) TimerEvent: {}
+[17.617838] (-) TimerEvent: {}
+[17.693232] (image_proc) StdoutLine: {'line': b'[ 56%] \x1b[32m\x1b[1mLinking CXX shared library librectify.so\x1b[0m\n'}
+[17.717997] (-) TimerEvent: {}
+[17.818674] (-) TimerEvent: {}
+[17.919373] (-) TimerEvent: {}
+[18.020067] (-) TimerEvent: {}
+[18.084226] (image_proc) StdoutLine: {'line': b'[ 56%] Built target rectify\n'}
+[18.120243] (-) TimerEvent: {}
+[18.126856] (image_proc) StdoutLine: {'line': b'[ 64%] \x1b[32mBuilding CXX object CMakeFiles/debayer.dir/src/debayer.cpp.o\x1b[0m\n'}
+[18.127467] (image_proc) StdoutLine: {'line': b'[ 64%] \x1b[32mBuilding CXX object CMakeFiles/debayer.dir/src/edge_aware.cpp.o\x1b[0m\n'}
+[18.220424] (-) TimerEvent: {}
+[18.321110] (-) TimerEvent: {}
+[18.421817] (-) TimerEvent: {}
+[18.522494] (-) TimerEvent: {}
+[18.623202] (-) TimerEvent: {}
+[18.723901] (-) TimerEvent: {}
+[18.824608] (-) TimerEvent: {}
+[18.925300] (-) TimerEvent: {}
+[19.026009] (-) TimerEvent: {}
+[19.126707] (-) TimerEvent: {}
+[19.227415] (-) TimerEvent: {}
+[19.328111] (-) TimerEvent: {}
+[19.428854] (-) TimerEvent: {}
+[19.529549] (-) TimerEvent: {}
+[19.630261] (-) TimerEvent: {}
+[19.730983] (-) TimerEvent: {}
+[19.831704] (-) TimerEvent: {}
+[19.932413] (-) TimerEvent: {}
+[20.033109] (-) TimerEvent: {}
+[20.133815] (-) TimerEvent: {}
+[20.234498] (-) TimerEvent: {}
+[20.335193] (-) TimerEvent: {}
+[20.435901] (-) TimerEvent: {}
+[20.536664] (-) TimerEvent: {}
+[20.637500] (-) TimerEvent: {}
+[20.738369] (-) TimerEvent: {}
+[20.839199] (-) TimerEvent: {}
+[20.940028] (-) TimerEvent: {}
+[21.040869] (-) TimerEvent: {}
+[21.141742] (-) TimerEvent: {}
+[21.242553] (-) TimerEvent: {}
+[21.343330] (-) TimerEvent: {}
+[21.444149] (-) TimerEvent: {}
+[21.544921] (-) TimerEvent: {}
+[21.645788] (-) TimerEvent: {}
+[21.746587] (-) TimerEvent: {}
+[21.847410] (-) TimerEvent: {}
+[21.948189] (-) TimerEvent: {}
+[22.048995] (-) TimerEvent: {}
+[22.149799] (-) TimerEvent: {}
+[22.250617] (-) TimerEvent: {}
+[22.351452] (-) TimerEvent: {}
+[22.452295] (-) TimerEvent: {}
+[22.553132] (-) TimerEvent: {}
+[22.653987] (-) TimerEvent: {}
+[22.754833] (-) TimerEvent: {}
+[22.855666] (-) TimerEvent: {}
+[22.956531] (-) TimerEvent: {}
+[23.057363] (-) TimerEvent: {}
+[23.158196] (-) TimerEvent: {}
+[23.259030] (-) TimerEvent: {}
+[23.359894] (-) TimerEvent: {}
+[23.460731] (-) TimerEvent: {}
+[23.561574] (-) TimerEvent: {}
+[23.662437] (-) TimerEvent: {}
+[23.763279] (-) TimerEvent: {}
+[23.864125] (-) TimerEvent: {}
+[23.964971] (-) TimerEvent: {}
+[24.065822] (-) TimerEvent: {}
+[24.166623] (-) TimerEvent: {}
+[24.267445] (-) TimerEvent: {}
+[24.368265] (-) TimerEvent: {}
+[24.469082] (-) TimerEvent: {}
+[24.569925] (-) TimerEvent: {}
+[24.670749] (-) TimerEvent: {}
+[24.771589] (-) TimerEvent: {}
+[24.872432] (-) TimerEvent: {}
+[24.973280] (-) TimerEvent: {}
+[25.074132] (-) TimerEvent: {}
+[25.174941] (-) TimerEvent: {}
+[25.275774] (-) TimerEvent: {}
+[25.376598] (-) TimerEvent: {}
+[25.477405] (-) TimerEvent: {}
+[25.578260] (-) TimerEvent: {}
+[25.679079] (-) TimerEvent: {}
+[25.779920] (-) TimerEvent: {}
+[25.880747] (-) TimerEvent: {}
+[25.981576] (-) TimerEvent: {}
+[26.082399] (-) TimerEvent: {}
+[26.183166] (-) TimerEvent: {}
+[26.283976] (-) TimerEvent: {}
+[26.384731] (-) TimerEvent: {}
+[26.472754] (image_proc) StdoutLine: {'line': b'[ 68%] \x1b[32m\x1b[1mLinking CXX shared library libdebayer.so\x1b[0m\n'}
+[26.484931] (-) TimerEvent: {}
+[26.585664] (-) TimerEvent: {}
+[26.686313] (-) TimerEvent: {}
+[26.786953] (-) TimerEvent: {}
+[26.887659] (-) TimerEvent: {}
+[26.988337] (-) TimerEvent: {}
+[27.077181] (image_proc) StdoutLine: {'line': b'[ 68%] Built target debayer\n'}
+[27.088513] (-) TimerEvent: {}
+[27.122344] (image_proc) StdoutLine: {'line': b'[ 72%] \x1b[32mBuilding CXX object CMakeFiles/resize.dir/src/resize.cpp.o\x1b[0m\n'}
+[27.188706] (-) TimerEvent: {}
+[27.289367] (-) TimerEvent: {}
+[27.390039] (-) TimerEvent: {}
+[27.490705] (-) TimerEvent: {}
+[27.591373] (-) TimerEvent: {}
+[27.692079] (-) TimerEvent: {}
+[27.792771] (-) TimerEvent: {}
+[27.893479] (-) TimerEvent: {}
+[27.994197] (-) TimerEvent: {}
+[28.094862] (-) TimerEvent: {}
+[28.195536] (-) TimerEvent: {}
+[28.296214] (-) TimerEvent: {}
+[28.396921] (-) TimerEvent: {}
+[28.497617] (-) TimerEvent: {}
+[28.598324] (-) TimerEvent: {}
+[28.699006] (-) TimerEvent: {}
+[28.799692] (-) TimerEvent: {}
+[28.900361] (-) TimerEvent: {}
+[29.001027] (-) TimerEvent: {}
+[29.101731] (-) TimerEvent: {}
+[29.202400] (-) TimerEvent: {}
+[29.303066] (-) TimerEvent: {}
+[29.403750] (-) TimerEvent: {}
+[29.504413] (-) TimerEvent: {}
+[29.605078] (-) TimerEvent: {}
+[29.705780] (-) TimerEvent: {}
+[29.806453] (-) TimerEvent: {}
+[29.907128] (-) TimerEvent: {}
+[30.007821] (-) TimerEvent: {}
+[30.108483] (-) TimerEvent: {}
+[30.209143] (-) TimerEvent: {}
+[30.309817] (-) TimerEvent: {}
+[30.410497] (-) TimerEvent: {}
+[30.511180] (-) TimerEvent: {}
+[30.611879] (-) TimerEvent: {}
+[30.712585] (-) TimerEvent: {}
+[30.813521] (-) TimerEvent: {}
+[30.914229] (-) TimerEvent: {}
+[31.014922] (-) TimerEvent: {}
+[31.115604] (-) TimerEvent: {}
+[31.216292] (-) TimerEvent: {}
+[31.317019] (-) TimerEvent: {}
+[31.417864] (-) TimerEvent: {}
+[31.518730] (-) TimerEvent: {}
+[31.619565] (-) TimerEvent: {}
+[31.720386] (-) TimerEvent: {}
+[31.821201] (-) TimerEvent: {}
+[31.922025] (-) TimerEvent: {}
+[32.022806] (-) TimerEvent: {}
+[32.123626] (-) TimerEvent: {}
+[32.224440] (-) TimerEvent: {}
+[32.325278] (-) TimerEvent: {}
+[32.426111] (-) TimerEvent: {}
+[32.526920] (-) TimerEvent: {}
+[32.627750] (-) TimerEvent: {}
+[32.728598] (-) TimerEvent: {}
+[32.829429] (-) TimerEvent: {}
+[32.930289] (-) TimerEvent: {}
+[33.031272] (-) TimerEvent: {}
+[33.132091] (-) TimerEvent: {}
+[33.232914] (-) TimerEvent: {}
+[33.333774] (-) TimerEvent: {}
+[33.434622] (-) TimerEvent: {}
+[33.535449] (-) TimerEvent: {}
+[33.636290] (-) TimerEvent: {}
+[33.737121] (-) TimerEvent: {}
+[33.837975] (-) TimerEvent: {}
+[33.938778] (-) TimerEvent: {}
+[34.039619] (-) TimerEvent: {}
+[34.140450] (-) TimerEvent: {}
+[34.241289] (-) TimerEvent: {}
+[34.342120] (-) TimerEvent: {}
+[34.442942] (-) TimerEvent: {}
+[34.543792] (-) TimerEvent: {}
+[34.644613] (-) TimerEvent: {}
+[34.745448] (-) TimerEvent: {}
+[34.846298] (-) TimerEvent: {}
+[34.947123] (-) TimerEvent: {}
+[35.047959] (-) TimerEvent: {}
+[35.148783] (-) TimerEvent: {}
+[35.249572] (-) TimerEvent: {}
+[35.350340] (-) TimerEvent: {}
+[35.382265] (image_proc) StdoutLine: {'line': b'[ 76%] \x1b[32m\x1b[1mLinking CXX shared library libresize.so\x1b[0m\n'}
+[35.450531] (-) TimerEvent: {}
+[35.551393] (-) TimerEvent: {}
+[35.652147] (-) TimerEvent: {}
+[35.752768] (-) TimerEvent: {}
+[35.806982] (image_proc) StdoutLine: {'line': b'[ 76%] Built target resize\n'}
+[35.851697] (image_proc) StdoutLine: {'line': b'[ 80%] \x1b[32mBuilding CXX object CMakeFiles/crop_decimate.dir/src/crop_decimate.cpp.o\x1b[0m\n'}
+[35.852824] (-) TimerEvent: {}
+[35.953322] (-) TimerEvent: {}
+[36.054186] (-) TimerEvent: {}
+[36.154983] (-) TimerEvent: {}
+[36.255803] (-) TimerEvent: {}
+[36.356623] (-) TimerEvent: {}
+[36.457428] (-) TimerEvent: {}
+[36.558266] (-) TimerEvent: {}
+[36.659088] (-) TimerEvent: {}
+[36.759900] (-) TimerEvent: {}
+[36.860730] (-) TimerEvent: {}
+[36.961506] (-) TimerEvent: {}
+[37.062294] (-) TimerEvent: {}
+[37.163122] (-) TimerEvent: {}
+[37.263921] (-) TimerEvent: {}
+[37.364701] (-) TimerEvent: {}
+[37.465471] (-) TimerEvent: {}
+[37.566300] (-) TimerEvent: {}
+[37.667109] (-) TimerEvent: {}
+[37.767936] (-) TimerEvent: {}
+[37.868743] (-) TimerEvent: {}
+[37.969537] (-) TimerEvent: {}
+[38.070383] (-) TimerEvent: {}
+[38.171204] (-) TimerEvent: {}
+[38.272028] (-) TimerEvent: {}
+[38.372830] (-) TimerEvent: {}
+[38.473649] (-) TimerEvent: {}
+[38.574481] (-) TimerEvent: {}
+[38.675306] (-) TimerEvent: {}
+[38.776140] (-) TimerEvent: {}
+[38.876966] (-) TimerEvent: {}
+[38.977816] (-) TimerEvent: {}
+[39.078639] (-) TimerEvent: {}
+[39.179416] (-) TimerEvent: {}
+[39.280252] (-) TimerEvent: {}
+[39.381079] (-) TimerEvent: {}
+[39.481879] (-) TimerEvent: {}
+[39.582724] (-) TimerEvent: {}
+[39.683559] (-) TimerEvent: {}
+[39.784342] (-) TimerEvent: {}
+[39.885136] (-) TimerEvent: {}
+[39.986006] (-) TimerEvent: {}
+[40.086777] (-) TimerEvent: {}
+[40.187513] (-) TimerEvent: {}
+[40.288333] (-) TimerEvent: {}
+[40.389142] (-) TimerEvent: {}
+[40.489971] (-) TimerEvent: {}
+[40.590810] (-) TimerEvent: {}
+[40.691629] (-) TimerEvent: {}
+[40.792443] (-) TimerEvent: {}
+[40.893262] (-) TimerEvent: {}
+[40.994090] (-) TimerEvent: {}
+[41.094870] (-) TimerEvent: {}
+[41.195594] (-) TimerEvent: {}
+[41.296427] (-) TimerEvent: {}
+[41.397249] (-) TimerEvent: {}
+[41.498096] (-) TimerEvent: {}
+[41.598896] (-) TimerEvent: {}
+[41.699672] (-) TimerEvent: {}
+[41.800486] (-) TimerEvent: {}
+[41.901295] (-) TimerEvent: {}
+[42.002113] (-) TimerEvent: {}
+[42.102912] (-) TimerEvent: {}
+[42.203650] (-) TimerEvent: {}
+[42.304491] (-) TimerEvent: {}
+[42.405326] (-) TimerEvent: {}
+[42.506220] (-) TimerEvent: {}
+[42.607063] (-) TimerEvent: {}
+[42.707894] (-) TimerEvent: {}
+[42.808714] (-) TimerEvent: {}
+[42.909543] (-) TimerEvent: {}
+[43.010379] (-) TimerEvent: {}
+[43.111172] (-) TimerEvent: {}
+[43.211984] (-) TimerEvent: {}
+[43.312832] (-) TimerEvent: {}
+[43.413668] (-) TimerEvent: {}
+[43.514517] (-) TimerEvent: {}
+[43.615337] (-) TimerEvent: {}
+[43.716159] (-) TimerEvent: {}
+[43.816966] (-) TimerEvent: {}
+[43.917786] (-) TimerEvent: {}
+[44.018568] (-) TimerEvent: {}
+[44.119264] (-) TimerEvent: {}
+[44.146312] (image_proc) StdoutLine: {'line': b'[ 84%] \x1b[32m\x1b[1mLinking CXX shared library libcrop_decimate.so\x1b[0m\n'}
+[44.219439] (-) TimerEvent: {}
+[44.320125] (-) TimerEvent: {}
+[44.420819] (-) TimerEvent: {}
+[44.521540] (-) TimerEvent: {}
+[44.568613] (image_proc) StdoutLine: {'line': b'[ 84%] Built target crop_decimate\n'}
+[44.612940] (image_proc) StdoutLine: {'line': b'[ 88%] \x1b[32mBuilding CXX object CMakeFiles/crop_non_zero.dir/src/crop_non_zero.cpp.o\x1b[0m\n'}
+[44.621660] (-) TimerEvent: {}
+[44.722370] (-) TimerEvent: {}
+[44.823021] (-) TimerEvent: {}
+[44.923675] (-) TimerEvent: {}
+[45.024342] (-) TimerEvent: {}
+[45.125010] (-) TimerEvent: {}
+[45.225659] (-) TimerEvent: {}
+[45.326363] (-) TimerEvent: {}
+[45.427049] (-) TimerEvent: {}
+[45.527957] (-) TimerEvent: {}
+[45.628658] (-) TimerEvent: {}
+[45.729343] (-) TimerEvent: {}
+[45.830079] (-) TimerEvent: {}
+[45.930774] (-) TimerEvent: {}
+[46.031444] (-) TimerEvent: {}
+[46.132108] (-) TimerEvent: {}
+[46.232792] (-) TimerEvent: {}
+[46.333498] (-) TimerEvent: {}
+[46.434211] (-) TimerEvent: {}
+[46.534902] (-) TimerEvent: {}
+[46.635611] (-) TimerEvent: {}
+[46.736316] (-) TimerEvent: {}
+[46.836993] (-) TimerEvent: {}
+[46.937665] (-) TimerEvent: {}
+[47.038356] (-) TimerEvent: {}
+[47.139062] (-) TimerEvent: {}
+[47.239752] (-) TimerEvent: {}
+[47.340448] (-) TimerEvent: {}
+[47.441149] (-) TimerEvent: {}
+[47.541841] (-) TimerEvent: {}
+[47.642494] (-) TimerEvent: {}
+[47.743153] (-) TimerEvent: {}
+[47.843813] (-) TimerEvent: {}
+[47.944498] (-) TimerEvent: {}
+[48.045176] (-) TimerEvent: {}
+[48.145825] (-) TimerEvent: {}
+[48.246465] (-) TimerEvent: {}
+[48.347131] (-) TimerEvent: {}
+[48.447801] (-) TimerEvent: {}
+[48.548481] (-) TimerEvent: {}
+[48.649151] (-) TimerEvent: {}
+[48.749835] (-) TimerEvent: {}
+[48.850531] (-) TimerEvent: {}
+[48.951197] (-) TimerEvent: {}
+[49.051888] (-) TimerEvent: {}
+[49.152584] (-) TimerEvent: {}
+[49.253257] (-) TimerEvent: {}
+[49.353962] (-) TimerEvent: {}
+[49.454648] (-) TimerEvent: {}
+[49.555303] (-) TimerEvent: {}
+[49.655966] (-) TimerEvent: {}
+[49.756628] (-) TimerEvent: {}
+[49.857302] (-) TimerEvent: {}
+[49.958004] (-) TimerEvent: {}
+[50.058666] (-) TimerEvent: {}
+[50.159317] (-) TimerEvent: {}
+[50.260004] (-) TimerEvent: {}
+[50.360664] (-) TimerEvent: {}
+[50.461320] (-) TimerEvent: {}
+[50.562016] (-) TimerEvent: {}
+[50.662688] (-) TimerEvent: {}
+[50.763371] (-) TimerEvent: {}
+[50.864043] (-) TimerEvent: {}
+[50.964716] (-) TimerEvent: {}
+[51.065383] (-) TimerEvent: {}
+[51.166046] (-) TimerEvent: {}
+[51.266715] (-) TimerEvent: {}
+[51.367387] (-) TimerEvent: {}
+[51.468049] (-) TimerEvent: {}
+[51.568710] (-) TimerEvent: {}
+[51.669395] (-) TimerEvent: {}
+[51.770102] (-) TimerEvent: {}
+[51.870782] (-) TimerEvent: {}
+[51.971449] (-) TimerEvent: {}
+[52.072118] (-) TimerEvent: {}
+[52.172801] (-) TimerEvent: {}
+[52.273456] (-) TimerEvent: {}
+[52.374112] (-) TimerEvent: {}
+[52.474724] (-) TimerEvent: {}
+[52.575365] (-) TimerEvent: {}
+[52.675991] (-) TimerEvent: {}
+[52.776630] (-) TimerEvent: {}
+[52.839056] (image_proc) StdoutLine: {'line': b'[ 92%] \x1b[32m\x1b[1mLinking CXX shared library libcrop_non_zero.so\x1b[0m\n'}
+[52.876805] (-) TimerEvent: {}
+[52.977469] (-) TimerEvent: {}
+[53.078179] (-) TimerEvent: {}
+[53.178824] (-) TimerEvent: {}
+[53.243758] (image_proc) StdoutLine: {'line': b'[ 92%] Built target crop_non_zero\n'}
+[53.279002] (-) TimerEvent: {}
+[53.287634] (image_proc) StdoutLine: {'line': b'[ 96%] \x1b[32mBuilding CXX object CMakeFiles/image_proc_exe.dir/src/image_proc.cpp.o\x1b[0m\n'}
+[53.379158] (-) TimerEvent: {}
+[53.479787] (-) TimerEvent: {}
+[53.580445] (-) TimerEvent: {}
+[53.681079] (-) TimerEvent: {}
+[53.781734] (-) TimerEvent: {}
+[53.882393] (-) TimerEvent: {}
+[53.983048] (-) TimerEvent: {}
+[54.083727] (-) TimerEvent: {}
+[54.184488] (-) TimerEvent: {}
+[54.285274] (-) TimerEvent: {}
+[54.386100] (-) TimerEvent: {}
+[54.486888] (-) TimerEvent: {}
+[54.587670] (-) TimerEvent: {}
+[54.688435] (-) TimerEvent: {}
+[54.789245] (-) TimerEvent: {}
+[54.890108] (-) TimerEvent: {}
+[54.990921] (-) TimerEvent: {}
+[55.091737] (-) TimerEvent: {}
+[55.192561] (-) TimerEvent: {}
+[55.293402] (-) TimerEvent: {}
+[55.394268] (-) TimerEvent: {}
+[55.495080] (-) TimerEvent: {}
+[55.595862] (-) TimerEvent: {}
+[55.696709] (-) TimerEvent: {}
+[55.797511] (-) TimerEvent: {}
+[55.898370] (-) TimerEvent: {}
+[55.999200] (-) TimerEvent: {}
+[56.100023] (-) TimerEvent: {}
+[56.200852] (-) TimerEvent: {}
+[56.301730] (-) TimerEvent: {}
+[56.402557] (-) TimerEvent: {}
+[56.503391] (-) TimerEvent: {}
+[56.604222] (-) TimerEvent: {}
+[56.705052] (-) TimerEvent: {}
+[56.805876] (-) TimerEvent: {}
+[56.906686] (-) TimerEvent: {}
+[57.007476] (-) TimerEvent: {}
+[57.108289] (-) TimerEvent: {}
+[57.209086] (-) TimerEvent: {}
+[57.309901] (-) TimerEvent: {}
+[57.410700] (-) TimerEvent: {}
+[57.511501] (-) TimerEvent: {}
+[57.612305] (-) TimerEvent: {}
+[57.713120] (-) TimerEvent: {}
+[57.813941] (-) TimerEvent: {}
+[57.914748] (-) TimerEvent: {}
+[58.015551] (-) TimerEvent: {}
+[58.116344] (-) TimerEvent: {}
+[58.217147] (-) TimerEvent: {}
+[58.317975] (-) TimerEvent: {}
+[58.418778] (-) TimerEvent: {}
+[58.519600] (-) TimerEvent: {}
+[58.620422] (-) TimerEvent: {}
+[58.721283] (-) TimerEvent: {}
+[58.822115] (-) TimerEvent: {}
+[58.922943] (-) TimerEvent: {}
+[59.023756] (-) TimerEvent: {}
+[59.124557] (-) TimerEvent: {}
+[59.225395] (-) TimerEvent: {}
+[59.326229] (-) TimerEvent: {}
+[59.426977] (-) TimerEvent: {}
+[59.527795] (-) TimerEvent: {}
+[59.628622] (-) TimerEvent: {}
+[59.729442] (-) TimerEvent: {}
+[59.830294] (-) TimerEvent: {}
+[59.931127] (-) TimerEvent: {}
+[60.031939] (-) TimerEvent: {}
+[60.132743] (-) TimerEvent: {}
+[60.233514] (-) TimerEvent: {}
+[60.334343] (-) TimerEvent: {}
+[60.412954] (image_proc) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable image_proc\x1b[0m\n'}
+[60.434511] (-) TimerEvent: {}
+[60.535290] (-) TimerEvent: {}
+[60.636015] (-) TimerEvent: {}
+[60.736739] (-) TimerEvent: {}
+[60.837551] (-) TimerEvent: {}
+[60.938349] (-) TimerEvent: {}
+[61.039065] (-) TimerEvent: {}
+[61.139740] (-) TimerEvent: {}
+[61.240458] (-) TimerEvent: {}
+[61.341228] (-) TimerEvent: {}
+[61.366129] (image_proc) StdoutLine: {'line': b'[100%] Built target image_proc_exe\n'}
+[61.392546] (image_proc) CommandEnded: {'returncode': 0}
+[61.395595] (image_proc) JobProgress: {'identifier': 'image_proc', 'progress': 'install'}
+[61.418149] (image_proc) Command: {'cmd': ['/usr/bin/cmake', '--install', '/home/nvidia/UGV_Rover/ros2_ws/build/image_proc'], 'cwd': '/home/nvidia/UGV_Rover/ros2_ws/build/image_proc', 'env': OrderedDict([('PYTHON_BASIC_REPL', '1'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'zh_CN:zh'), ('USER', 'nvidia'), ('SSH_CLIENT', '100.69.168.86 50576 22'), ('XDG_SESSION_TYPE', 'tty'), ('GIT_ASKPASS', '/home/nvidia/.vscode-server/cli/servers/Stable-1e3c50d64110be466c0b4a45222e81d2c9352888/server/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/nvidia/UGV_Rover/ros2_ws/install/tracetools_image_pipeline/lib:/usr/local/lib:/usr/local/cuda-12.6/lib64:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib:/usr/local/lib:/usr/local/cuda-12.6/lib64'), ('BROWSER', '/home/nvidia/.vscode-server/cli/servers/Stable-1e3c50d64110be466c0b4a45222e81d2c9352888/server/bin/helpers/browser.sh'), ('MOTD_SHOWN', 'pam'), ('HOME', '/home/nvidia'), ('OLDPWD', '/home/nvidia/UGV_Rover/ros2_ws/src'), ('TERM_PROGRAM_VERSION', '1.106.2'), ('VSCODE_IPC_HOOK_CLI', '/run/user/1000/vscode-ipc-c1a5def7-23a4-4066-aec6-d3e1bb2032c7.sock'), ('JETSON_L4T', '36.4.7'), ('ROS_PYTHON_VERSION', '3'), ('JETSON_MODEL', 'NVIDIA Jetson Orin Nano Engineering Reference Developer Kit Super'), ('VSCODE_GIT_ASKPASS_MAIN', '/home/nvidia/.vscode-server/cli/servers/Stable-1e3c50d64110be466c0b4a45222e81d2c9352888/server/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/home/nvidia/.vscode-server/cli/servers/Stable-1e3c50d64110be466c0b4a45222e81d2c9352888/server/node'), ('SSL_CERT_FILE', '/usr/lib/ssl/certs/ca-certificates.crt'), ('PYDEVD_DISABLE_FILE_VALIDATION', '1'), ('BUNDLED_DEBUGPY_PATH', '/home/nvidia/.vscode-server/extensions/ms-python.debugpy-2025.16.0/bundled/libs/debugpy'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'nvidia'), ('JETSON_MODULE', 'NVIDIA Jetson Orin Nano (Developer kit)'), ('JETSON_SERIAL_NUMBER', '1422425023452'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('TERM', 'xterm-256color'), ('XDG_SESSION_ID', '3'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/usr/local/cuda-12.6/bin:/home/nvidia/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/home/nvidia/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/home/nvidia/.vscode-server/cli/servers/Stable-1e3c50d64110be466c0b4a45222e81d2c9352888/server/bin/remote-cli:/home/nvidia/.local/bin:/opt/ros/humble/bin:/usr/local/cuda-12.6/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/nvidia/.vscode-server/extensions/ms-python.debugpy-2025.16.0/bundled/scripts/noConfigScripts'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('SSL_CERT_DIR', '/usr/lib/ssl/certs'), ('VSCODE_DEBUGPY_ADAPTER_ENDPOINTS', '/home/nvidia/.vscode-server/extensions/ms-python.debugpy-2025.16.0/.noConfigDebugAdapterEndpoints/endpoint-a4a24136a0031300.txt'), ('LANG', 'zh_CN.UTF-8'), ('PYTHONSTARTUP', '/home/nvidia/.vscode-server/data/User/workspaceStorage/e310b22dc16e44f14a4be4bb7819128f/ms-python.python/pythonrc.py'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('JETSON_SOC', 'tegra234'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-0f62094113.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/home/nvidia/UGV_Rover/ros2_ws/install/tracetools_image_pipeline:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('JETSON_CUDA_ARCH_BIN', '8.7'), ('PWD', '/home/nvidia/UGV_Rover/ros2_ws/build/image_proc'), ('SSH_CONNECTION', '100.69.168.86 50576 100.127.226.9 22'), ('XDG_DATA_DIRS', '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/usr/local/lib/python3.10/site-packages/:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages:/usr/local/lib/python3.10/site-packages/:'), ('COLCON', '1'), ('JETSON_JETPACK', ''), ('JETSON_P_NUMBER', 'p3767-0005'), ('CMAKE_PREFIX_PATH', '/home/nvidia/UGV_Rover/ros2_ws/install/tracetools_image_pipeline:/opt/ros/humble')]), 'shell': False}
+[61.437616] (image_proc) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[61.439397] (image_proc) StdoutLine: {'line': b'-- Execute custom install script\n'}
+[61.440367] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/lib/image_proc/rectify_node\n'}
+[61.441285] (-) TimerEvent: {}
+[61.459938] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/lib/image_proc/debayer_node\n'}
+[61.478146] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/lib/image_proc/resize_node\n'}
+[61.495803] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/lib/image_proc/crop_decimate_node\n'}
+[61.515406] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/lib/image_proc/crop_non_zero_node\n'}
+[61.534126] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/bin/image_proc\n'}
+[61.547306] (-) TimerEvent: {}
+[61.555053] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/include/image_proc/crop_decimate.hpp\n'}
+[61.574801] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/include/image_proc/crop_non_zero.hpp\n'}
+[61.592354] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/include/image_proc/debayer.hpp\n'}
+[61.611687] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/include/image_proc/edge_aware.hpp\n'}
+[61.631081] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/include/image_proc/processor.hpp\n'}
+[61.647612] (-) TimerEvent: {}
+[61.651082] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/include/image_proc/rectify.hpp\n'}
+[61.672252] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/include/image_proc/resize.hpp\n'}
+[61.690633] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/include/image_proc/utils.hpp\n'}
+[61.708854] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/share/image_proc/environment/library_path.sh\n'}
+[61.725645] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/share/image_proc/environment/library_path.dsv\n'}
+[61.744994] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/lib/libimage_proc.so\n'}
+[61.747714] (-) TimerEvent: {}
+[61.761134] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/lib/librectify.so\n'}
+[61.780785] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/lib/libdebayer.so\n'}
+[61.799093] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/lib/libresize.so\n'}
+[61.818570] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/lib/libcrop_decimate.so\n'}
+[61.837075] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/lib/libcrop_non_zero.so\n'}
+[61.847875] (-) TimerEvent: {}
+[61.860760] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/lib/image_proc/image_proc\n'}
+[61.878582] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/share/image_proc/launch/image_proc.launch.py\n'}
+[61.896511] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/share/ament_index/resource_index/package_run_dependencies/image_proc\n'}
+[61.913493] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/share/ament_index/resource_index/parent_prefix_path/image_proc\n'}
+[61.931932] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/share/image_proc/environment/ament_prefix_path.sh\n'}
+[61.948042] (-) TimerEvent: {}
+[61.950762] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/share/image_proc/environment/ament_prefix_path.dsv\n'}
+[61.968451] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/share/image_proc/environment/path.sh\n'}
+[61.987418] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/share/image_proc/environment/path.dsv\n'}
+[62.006489] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/share/image_proc/local_setup.bash\n'}
+[62.025414] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/share/image_proc/local_setup.sh\n'}
+[62.044010] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/share/image_proc/local_setup.zsh\n'}
+[62.048180] (-) TimerEvent: {}
+[62.063793] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/share/image_proc/local_setup.dsv\n'}
+[62.082847] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/share/image_proc/package.dsv\n'}
+[62.102184] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/share/ament_index/resource_index/packages/image_proc\n'}
+[62.120876] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/share/ament_index/resource_index/rclcpp_components/image_proc\n'}
+[62.140110] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/share/image_proc/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[62.148313] (-) TimerEvent: {}
+[62.158179] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/share/image_proc/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[62.176237] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/share/image_proc/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[62.194469] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/share/image_proc/cmake/image_procConfig.cmake\n'}
+[62.212549] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/share/image_proc/cmake/image_procConfig-version.cmake\n'}
+[62.231084] (image_proc) StdoutLine: {'line': b'-- Symlinking: /home/nvidia/UGV_Rover/ros2_ws/install/image_proc/share/image_proc/package.xml\n'}
+[62.248486] (-) TimerEvent: {}
+[62.254053] (image_proc) CommandEnded: {'returncode': 0}
+[62.348670] (-) TimerEvent: {}
+[62.350430] (image_proc) JobEnded: {'identifier': 'image_proc', 'rc': 0}
+[62.352499] (-) EventReactorShutdown: {}

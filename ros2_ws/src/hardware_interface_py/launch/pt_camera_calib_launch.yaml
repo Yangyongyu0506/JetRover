@@ -1,0 +1,33 @@
+launch:
+  - node:
+      pkg: camera_ros
+      exec: camera_node
+      name: pt_camera
+      output: screen
+      param:
+        - name: camera
+          value: 0
+        - name: frame_id
+          value: camera_frame
+        # - name: camera_info_url
+        #   value: package://visiontools_py/config/ost.yaml
+        - name: width
+          value: 1920
+        - name: height
+          value: 1080
+        - name: format
+          value: MJPEG
+  - node:
+      pkg: camera_calibration
+      exec: cameracalibrator
+      name: pt_camera_calibrator
+      output: screen
+      param:
+        - name: size
+          value: 11x8
+        - name: square
+          value: 0.005
+        - name: image
+          value: /pt_camera/image_raw
+        - name: camera
+          value: /pt_camera

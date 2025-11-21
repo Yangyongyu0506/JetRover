@@ -1,0 +1,88 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-ed11cb72536b98d5c0d3.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "tracetools_image_pipeline",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "status::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-status-a328a3c7a2a048172457.json",
+					"name" : "status",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "tracetools_image_pipeline::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-tracetools_image_pipeline-e47f57de0d2c7a2a0a26.json",
+					"name" : "tracetools_image_pipeline",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "tracetools_image_pipeline_uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-tracetools_image_pipeline_uninstall-c055d5ae4c1a030f713d.json",
+					"name" : "tracetools_image_pipeline_uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-3c4f2253b1770f91293f.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/nvidia/UGV_Rover/ros2_ws/build/tracetools_image_pipeline",
+		"source" : "/home/nvidia/UGV_Rover/ros2_ws/src/image_pipeline/tracetools_image_pipeline"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

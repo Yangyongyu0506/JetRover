@@ -1,0 +1,28 @@
+launch:
+  - node:
+      pkg: camera_ros
+      exec: camera_node
+      name: pt_camera
+      output: screen
+      param:
+        - name: camera
+          value: 0
+        - name: frame_id
+          value: camera_frame
+        - name: camera_info_url
+          value: package://hardware_interface_py/config/ost.yaml
+        - name: width
+          value: 1920
+        - name: height
+          value: 1080
+        - name: format
+          value: MJPEG
+      remap:
+        - from: /pt_camera/image_raw
+          to: /pt_camera/image
+  - node:
+      pkg: image_proc
+      exec: image_proc
+      name: image_proc_node
+      output: screen
+      namespace: pt_camera

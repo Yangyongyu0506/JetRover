@@ -1,0 +1,17 @@
+running develop
+running egg_info
+writing hardware_interface_py.egg-info/PKG-INFO
+writing dependency_links to hardware_interface_py.egg-info/dependency_links.txt
+writing entry points to hardware_interface_py.egg-info/entry_points.txt
+writing requirements to hardware_interface_py.egg-info/requires.txt
+writing top-level names to hardware_interface_py.egg-info/top_level.txt
+reading manifest file 'hardware_interface_py.egg-info/SOURCES.txt'
+writing manifest file 'hardware_interface_py.egg-info/SOURCES.txt'
+running build_ext
+Creating /home/nvidia/UGV_Rover/ros2_ws/install/hardware_interface_py/lib/python3.10/site-packages/hardware-interface-py.egg-link (link to .)
+Installing ESP_agent_lifecycle script to /home/nvidia/UGV_Rover/ros2_ws/install/hardware_interface_py/lib/hardware_interface_py
+Installing ESP_agent_node script to /home/nvidia/UGV_Rover/ros2_ws/install/hardware_interface_py/lib/hardware_interface_py
+
+Installed /home/nvidia/UGV_Rover/ros2_ws/build/hardware_interface_py
+running symlink_data
+symbolically linking /home/nvidia/UGV_Rover/ros2_ws/build/hardware_interface_py/launch/pt_camera_calib_launch.yaml -> /home/nvidia/UGV_Rover/ros2_ws/install/hardware_interface_py/share/hardware_interface_py/launch

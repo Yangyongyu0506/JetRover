@@ -19,3 +19,9 @@ To use MultiThreadedExecutor, you must assign num_threads, otherwise it will not
 Created the node without lifecycle.
 
 Modified the rx funcition so that it can be acsynchronously called.
+## 2025.11.21
+I have acquired the driver for LiDAR. To launch the LiDAR node:
+```bash
+ros2 launch ldlidar_stl_ros2 ld19.launch.py
+```
+In the future, I will have to correct the tf from lidar to base_link.

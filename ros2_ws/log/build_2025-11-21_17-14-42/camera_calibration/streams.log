@@ -1,0 +1,25 @@
+[1.341s] Invoking command in '/home/nvidia/UGV_Rover/ros2_ws/build/camera_calibration': PYTHONPATH=/home/nvidia/UGV_Rover/ros2_ws/build/camera_calibration/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/nvidia/UGV_Rover/ros2_ws/install/camera_calibration/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/nvidia/UGV_Rover/ros2_ws/build/camera_calibration/build --no-deps symlink_data
+[1.628s] /home/nvidia/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+[1.628s]   warnings.warn(msg)
+[1.944s] running develop
+[2.342s] running egg_info
+[2.373s] creating src/camera_calibration.egg-info
+[2.373s] writing src/camera_calibration.egg-info/PKG-INFO
+[2.374s] writing dependency_links to src/camera_calibration.egg-info/dependency_links.txt
+[2.375s] writing entry points to src/camera_calibration.egg-info/entry_points.txt
+[2.375s] writing requirements to src/camera_calibration.egg-info/requires.txt
+[2.375s] writing top-level names to src/camera_calibration.egg-info/top_level.txt
+[2.375s] writing manifest file 'src/camera_calibration.egg-info/SOURCES.txt'
+[2.438s] reading manifest file 'src/camera_calibration.egg-info/SOURCES.txt'
+[2.440s] writing manifest file 'src/camera_calibration.egg-info/SOURCES.txt'
+[2.471s] running build_ext
+[2.472s] Creating /home/nvidia/UGV_Rover/ros2_ws/install/camera_calibration/lib/python3.10/site-packages/camera-calibration.egg-link (link to src)
+[2.473s] Installing cameracalibrator script to /home/nvidia/UGV_Rover/ros2_ws/install/camera_calibration/lib/camera_calibration
+[2.474s] Installing cameracheck script to /home/nvidia/UGV_Rover/ros2_ws/install/camera_calibration/lib/camera_calibration
+[2.474s] 
+[2.474s] Installed /home/nvidia/UGV_Rover/ros2_ws/build/camera_calibration/src
+[2.474s] running symlink_data
+[2.475s] creating /home/nvidia/UGV_Rover/ros2_ws/install/camera_calibration/share/ament_index/resource_index/packages
+[2.475s] symbolically linking /home/nvidia/UGV_Rover/ros2_ws/build/camera_calibration/resource/camera_calibration -> /home/nvidia/UGV_Rover/ros2_ws/install/camera_calibration/share/ament_index/resource_index/packages
+[2.475s] symbolically linking /home/nvidia/UGV_Rover/ros2_ws/build/camera_calibration/package.xml -> /home/nvidia/UGV_Rover/ros2_ws/install/camera_calibration/share/camera_calibration
+[2.560s] Invoked command in '/home/nvidia/UGV_Rover/ros2_ws/build/camera_calibration' returned '0': PYTHONPATH=/home/nvidia/UGV_Rover/ros2_ws/build/camera_calibration/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/nvidia/UGV_Rover/ros2_ws/install/camera_calibration/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/nvidia/UGV_Rover/ros2_ws/build/camera_calibration/build --no-deps symlink_data

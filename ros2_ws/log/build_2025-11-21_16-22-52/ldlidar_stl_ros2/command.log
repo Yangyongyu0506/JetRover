@@ -1,0 +1,6 @@
+Invoking command in '/home/nvidia/UGV_Rover/ros2_ws/build/ldlidar_stl_ros2': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/nvidia/UGV_Rover/ros2_ws/src/ldlidar_stl_ros2 -DCMAKE_INSTALL_PREFIX=/home/nvidia/UGV_Rover/ros2_ws/install/ldlidar_stl_ros2
+Invoked command in '/home/nvidia/UGV_Rover/ros2_ws/build/ldlidar_stl_ros2' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/nvidia/UGV_Rover/ros2_ws/src/ldlidar_stl_ros2 -DCMAKE_INSTALL_PREFIX=/home/nvidia/UGV_Rover/ros2_ws/install/ldlidar_stl_ros2
+Invoking command in '/home/nvidia/UGV_Rover/ros2_ws/build/ldlidar_stl_ros2': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/nvidia/UGV_Rover/ros2_ws/build/ldlidar_stl_ros2 -- -j6 -l6
+Invoked command in '/home/nvidia/UGV_Rover/ros2_ws/build/ldlidar_stl_ros2' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/nvidia/UGV_Rover/ros2_ws/build/ldlidar_stl_ros2 -- -j6 -l6
+Invoking command in '/home/nvidia/UGV_Rover/ros2_ws/build/ldlidar_stl_ros2': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/nvidia/UGV_Rover/ros2_ws/build/ldlidar_stl_ros2
+Invoked command in '/home/nvidia/UGV_Rover/ros2_ws/build/ldlidar_stl_ros2' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/nvidia/UGV_Rover/ros2_ws/build/ldlidar_stl_ros2

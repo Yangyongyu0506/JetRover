@@ -1,0 +1,19 @@
+[1.382s] Invoking command in '/home/nvidia/UGV_Rover/ros2_ws/build/hardware_interface_py': PYTHONPATH=/home/nvidia/UGV_Rover/ros2_ws/build/hardware_interface_py/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/nvidia/UGV_Rover/ros2_ws/install/hardware_interface_py/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/nvidia/UGV_Rover/ros2_ws/build/hardware_interface_py/build --no-deps symlink_data
+[2.006s] running develop
+[2.419s] running egg_info
+[2.450s] writing hardware_interface_py.egg-info/PKG-INFO
+[2.451s] writing dependency_links to hardware_interface_py.egg-info/dependency_links.txt
+[2.452s] writing entry points to hardware_interface_py.egg-info/entry_points.txt
+[2.452s] writing requirements to hardware_interface_py.egg-info/requires.txt
+[2.453s] writing top-level names to hardware_interface_py.egg-info/top_level.txt
+[2.517s] reading manifest file 'hardware_interface_py.egg-info/SOURCES.txt'
+[2.519s] writing manifest file 'hardware_interface_py.egg-info/SOURCES.txt'
+[2.551s] running build_ext
+[2.552s] Creating /home/nvidia/UGV_Rover/ros2_ws/install/hardware_interface_py/lib/python3.10/site-packages/hardware-interface-py.egg-link (link to .)
+[2.553s] Installing ESP_agent_lifecycle script to /home/nvidia/UGV_Rover/ros2_ws/install/hardware_interface_py/lib/hardware_interface_py
+[2.554s] Installing ESP_agent_node script to /home/nvidia/UGV_Rover/ros2_ws/install/hardware_interface_py/lib/hardware_interface_py
+[2.554s] 
+[2.554s] Installed /home/nvidia/UGV_Rover/ros2_ws/build/hardware_interface_py
+[2.554s] running symlink_data
+[2.556s] symbolically linking /home/nvidia/UGV_Rover/ros2_ws/build/hardware_interface_py/config/ost.yaml -> /home/nvidia/UGV_Rover/ros2_ws/install/hardware_interface_py/share/hardware_interface_py/config
+[2.643s] Invoked command in '/home/nvidia/UGV_Rover/ros2_ws/build/hardware_interface_py' returned '0': PYTHONPATH=/home/nvidia/UGV_Rover/ros2_ws/build/hardware_interface_py/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/nvidia/UGV_Rover/ros2_ws/install/hardware_interface_py/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/nvidia/UGV_Rover/ros2_ws/build/hardware_interface_py/build --no-deps symlink_data
