@@ -1,1 +1,0 @@
-/home/nvidia/UGV_Rover/ros2_ws/build/image_proc/ament_cmake_core/image_procConfig-version.cmake

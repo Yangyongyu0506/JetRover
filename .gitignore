@@ -1,0 +1,26 @@
+# ROS2 workspace specific files
+build/
+install/
+log/
+
+# ROS2 package specific files
+**/build/
+**/install/
+**/log/
+
+# Python specific files
+*.pyc
+*.pyo
+__pycache__/
+
+# Other
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+*.bak
+*.tmp
+*.log
+*.cache
+*.out

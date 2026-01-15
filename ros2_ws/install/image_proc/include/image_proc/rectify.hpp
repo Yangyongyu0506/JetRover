@@ -1,1 +1,0 @@
-/home/nvidia/UGV_Rover/ros2_ws/src/image_pipeline/image_proc/include/image_proc/rectify.hpp
