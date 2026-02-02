@@ -36,3 +36,5 @@ sudo tailscale up
 # 按装ros2，docker等开发工具
 wget http://fishros.com/install -O fishros && . fishros # 使用fishros脚本一键安装
 ```
+## 2. UGV开发
+基础资料参见[https://www.waveshare.net/wiki/UGV_Rover_Jetson_Orin_ROS2](url)
