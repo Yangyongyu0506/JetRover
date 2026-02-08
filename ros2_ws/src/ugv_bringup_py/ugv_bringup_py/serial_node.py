@@ -6,7 +6,9 @@ from .utils import BaseController
 from std_msgs.msg import Float32, Float32MultiArray
 from sensor_msgs.msg import Imu, MagneticField, JointState
 from geometry_msgs.msg import Twist
-from numpy import deg2rad, rad2deg
+from numpy import deg2rad
+import json
+from ament_index_python.packages import get_package_share_directory
 
 class SerialNode(Node):
     def __init__(self):
@@ -17,16 +19,26 @@ class SerialNode(Node):
 
         self.pub_name_imu = self.declare_parameter('pub_name_imu', 'imu/data_raw').value
         self.pub_name_mag = self.declare_parameter('pub_name_mag', 'imu/mag').value
-        self.pub_name_odomraw = self.declare_parameter('pub_name_odomraw', 'odom/odom_raw').value
+        self.pub_name_odomraw = self.declare_parameter('pub_name_odomraw', 'encoder').value
         self.pub_name_vol = self.declare_parameter('pub_name_vol', 'voltage').value
         self.pub_name_joints = self.declare_parameter('pub_name_joints', 'joint_states').value
 
         self.sub_name_vel = self.declare_parameter('sub_name_vel', 'cmd_vel').value
         self.sub_name_lights = self.declare_parameter('sub_name_lights', 'ugv/led_strl').value
         self.sub_name_servos = self.declare_parameter('sub_name_servos', 'ugv/servos').value
+
+        do_servo_calib = self.declare_parameter('do_servo_calib',  True).value
         # serial setup
         self.base = BaseController(self.port, self.baudrate, self.get_logger())
         self.base.send_command({'T': 131, 'cmd': 1})  # request base info
+        # sensor data
+        covs = json.load(open(get_package_share_directory('ugv_bringup_py') + '/config/covariances.json'))
+        self.imu_acce_cov = covs['imu_acce_covariance']
+        self.imu_gyro_cov = covs['imu_gyro_covariance']
+        self.mag_cov = covs['magnetic_field_covariance']
+        # perform servo calibration if required
+        if do_servo_calib:
+            self.do_servo_calib()
         # ROS2 components
         # pubs
         self.pub_imu = self.create_publisher(Imu, self.pub_name_imu, 10)
@@ -54,6 +66,14 @@ class SerialNode(Node):
         # end of initialization
         self.get_logger().info("Serial Node has been started.")
 
+    def do_servo_calib(self):
+        self.get_logger().info("Performing servo calibration...")
+        self.base.send_command({'T': 210, "cmd": 0}) # shutdown servos' torque lock
+        input("Please manually adjust the servos to the center position, then press Enter to continue...")
+        self.base.send_command({"T": 502, "id": 1})
+        self.base.send_command({"T": 502, "id": 2}) # set current position as zero position
+        self.get_logger().info("Servo calibration completed.")
+
     def timer_callback(self):
         self.base.feedback_data()
         if self.base.base_data["T"] == 1001:
@@ -72,11 +92,12 @@ class SerialNode(Node):
         imu_msg.linear_acceleration.x = 9.8 * float(base_data["ax"]) / 8192
         imu_msg.linear_acceleration.y = 9.8 * float(base_data["ay"]) / 8192
         imu_msg.linear_acceleration.z = 9.8 * float(base_data["az"]) / 8192
+        imu_msg.linear_acceleration_covariance = self.imu_acce_cov
         imu_msg.angular_velocity.x = deg2rad(float(base_data["gx"]) / 16.4)
         imu_msg.angular_velocity.y = deg2rad(float(base_data["gy"]) / 16.4)
         imu_msg.angular_velocity.z = deg2rad(float(base_data["gz"]) / 16.4)
-
-        # We need covariances here
+        imu_msg.angular_velocity_covariance = self.imu_gyro_cov
+        imu_msg.orientation_covariance[0] = -1  # orientation not provided
 
         self.pub_imu.publish(imu_msg)
 
@@ -85,20 +106,19 @@ class SerialNode(Node):
         mag_msg.header.stamp = time_now
         mag_msg.header.frame_id = 'base_imu_link'
 
-        mag_msg.magnetic_field.x = float(base_data["mx"]) * 0.15
-        mag_msg.magnetic_field.y = float(base_data["my"]) * 0.15
-        mag_msg.magnetic_field.z = float(base_data["mz"]) * 0.15
-
-        # We need covariances here
+        mag_msg.magnetic_field.x = float(base_data["mx"]) * 0.15 * 1e-7
+        mag_msg.magnetic_field.y = float(base_data["my"]) * 0.15 * 1e-7
+        mag_msg.magnetic_field.z = float(base_data["mz"]) * 0.15 * 1e-7
+        mag_msg.magnetic_field_covariance = self.mag_cov
 
         self.pub_mag.publish(mag_msg)
 
-    def publish_odomraw(self, time_now, base_data):
+    def publish_odomraw(self, _, base_data):
         odomraw_msg = Float32MultiArray()
-        odomraw_msg.data = [float(base_data["odl"]) / 100, float(base_data["odr"]) / 100]
+        odomraw_msg.data = [float(base_data["odl"]) / 100, float(base_data["odr"]) / 100, float(base_data['L']), float(base_data['R'])]
         self.pub_odomraw.publish(odomraw_msg)
 
-    def publish_voltage(self, time_now, base_data):
+    def publish_voltage(self, _, base_data):
         vol_msg = Float32()
         vol_msg.data = float(base_data["v"]) / 100
         self.pub_vol.publish(vol_msg)
@@ -152,11 +172,11 @@ class SerialNode(Node):
 
 def main():
     rclpy.init()
-    serial_node = SerialNode()
+    node = SerialNode()
     try:
-        rclpy.spin(serial_node)
+        rclpy.spin(node)
     except (KeyboardInterrupt, ExternalShutdownException):
-        serial_node.destroy_node()
+        node.destroy_node()
     finally:
         if rclpy.ok():
             rclpy.shutdown()

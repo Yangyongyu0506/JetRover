@@ -7,6 +7,7 @@ def generate_launch_description():
         executable='serial_node',
         name='serial_node',
         output='screen',
+        parameters=[{'do_servo_calib': False}]
     )
     joyparser_node = Node(
         package='ugv_bringup_py',
@@ -14,14 +15,7 @@ def generate_launch_description():
         name='joyparser_node',
         output='screen',
     )
-    joy_node = Node(
-        package='joy',
-        executable='joy_node',
-        name='joy_node',
-        output='screen',
-    )
     return LaunchDescription([
         serial_node,
         joyparser_node,
-        joy_node,
     ])
