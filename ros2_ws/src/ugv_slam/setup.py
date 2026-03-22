@@ -1,8 +1,7 @@
 from setuptools import find_packages, setup
-import os
 from glob import glob
 
-package_name = 'ugv_bringup_py'
+package_name = 'ugv_slam'
 
 setup(
     name=package_name,
@@ -28,10 +27,6 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'serial_node = ugv_bringup_py.serial_node:main',
-            'joyparser_node = ugv_bringup_py.joyparser_node:main',
-            'sensordebug_node = ugv_bringup_py.sensordebug_node:main',
-            'camera_node = ugv_bringup_py.camera_node:main',
         ],
     },
 )

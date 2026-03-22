@@ -20,9 +20,8 @@ def generate_launch_description():
         output='screen',
         parameters=[{
             'publish_tf': False,
-            'use_mag': True,
-            'yaw_offset': -0.248,
-            # 'yaw_offset': 0.0,
+            'use_mag': False,
+            'gain': 0.5,
         }]
     )
     robot_localization_efk_node = Node(

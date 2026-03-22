@@ -20,6 +20,8 @@ class JoyparserNode(Node):
 
         self.use_timeout = self.declare_parameter('use_timeout', True).value
         self.vol_threshold = self.declare_parameter('vol_threshold', 10.5).value
+        self.max_v = self.declare_parameter('max_linear_vel', 1.0).value
+        self.max_w = self.declare_parameter('max_angular_vel', 2.0).value
 
         self.servo_bias = np.array([0., 0.])
         self.last_joy_time = self.get_clock().now()
@@ -68,16 +70,16 @@ class JoyparserNode(Node):
         self.last_joy_time = self.get_clock().now()
         axes = msg.axes
         buttons = msg.buttons
-        if buttons[12]:
+        if buttons[8]:
             self.servo_bias = np.array([0., 0.])  # reset servo bias
-        self.publish_vel(axes[2:4])
-        self.publish_lights(axes[4:6])
+        self.publish_vel(axes[3:5])
+        self.publish_lights(axes[2:6:3])  # only use axes[2] and axes[5] for lights control
         self.publish_servos(axes[0:2] + axes[6:8])
 
     def publish_vel(self, axes_slice):
         vel_msg = Twist()
-        vel_msg.linear.x = axes_slice[1] * 1.0  # map from -1~1 to -1~1 m/s
-        vel_msg.angular.z = axes_slice[0] * 2.0  # map from -1~1 to 2~-2 rad/s
+        vel_msg.linear.x = axes_slice[1] * self.max_v  # map from -1~1 to -max_v~max_v m/s
+        vel_msg.angular.z = axes_slice[0] * self.max_w  # map from -1~1 to -max_w~max_w rad/s
         self.pub_vel.publish(vel_msg)
 
     def publish_lights(self, axes_slice):
