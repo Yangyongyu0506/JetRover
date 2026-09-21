@@ -1,0 +1,6 @@
+[submodule "ros2_ws/src/depthai-ros"]
+    path = ros2_ws/src/depthai-ros
+    url = https://github.com/luxonis/depthai-ros.git
+[submodule "ros2_ws/src/ldlidar_stl_ros2"] 
+    path = ros2_ws/src/ldlidar_stl_ros2
+    url = https://github.com/ldrobotSensorTeam/ldlidar_stl_ros2.git
