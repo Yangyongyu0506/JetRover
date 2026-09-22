@@ -12,6 +12,7 @@
 #include <geometry_msgs/msg/twist.hpp>
 #include <rclcpp/rclcpp.hpp>
 #include <sensor_msgs/msg/imu.hpp>
+#include <nav_msgs/msg/odometry.hpp>
 #include <sensor_msgs/msg/joint_state.hpp>
 #include <sensor_msgs/msg/magnetic_field.hpp>
 #include <std_msgs/msg/float32.hpp>
@@ -26,16 +27,18 @@ public:
   SerialNode() : Node("serial_node") {
     baudrate_ = this->declare_parameter<int>("baudrate", 115200);
     port_ = this->declare_parameter<std::string>("port", "/dev/ttyTHS1");
-    pub_name_imu_ = this->declare_parameter<std::string>("pub_name_imu", "imu/data_raw");
-    pub_name_mag_ = this->declare_parameter<std::string>("pub_name_mag", "imu/mag");
-    pub_name_odomraw_ = this->declare_parameter<std::string>("pub_name_odomraw", "encoder");
-    pub_name_vol_ = this->declare_parameter<std::string>("pub_name_vol", "voltage");
-    pub_name_joints_ = this->declare_parameter<std::string>("pub_name_joints", "joint_states");
-    sub_name_vel_ = this->declare_parameter<std::string>("sub_name_vel", "cmd_vel");
-    sub_name_lights_ = this->declare_parameter<std::string>("sub_name_lights", "ugv/led_strl");
-    sub_name_servos_ = this->declare_parameter<std::string>("sub_name_servos", "ugv/servos");
-    do_servo_calib_ = this->declare_parameter<bool>("do_servo_calib", true);
+    pub_name_imu_ = this->declare_parameter<std::string>("imu_topic", "imu/data_raw");
+    pub_name_mag_ = this->declare_parameter<std::string>("mag_topic", "imu/mag");
+    pub_name_odomraw_ = this->declare_parameter<std::string>("odomraw_topic", "odom/raw");
+    pub_name_vol_ = this->declare_parameter<std::string>("vol_topic", "voltage");
+    pub_name_joints_ = this->declare_parameter<std::string>("joints_topic", "joint_states");
+    sub_name_vel_ = this->declare_parameter<std::string>("vel_topic", "cmd_vel");
+    sub_name_lights_ = this->declare_parameter<std::string>("lights_topic", "ugv/led_strl");
+    sub_name_servos_ = this->declare_parameter<std::string>("servos_topic", "ugv/servos");
+    do_servo_calib_ = this->declare_parameter<bool>("do_servo_calib", false);
     calib_timeout_sec_ = this->declare_parameter<double>("calib_timeout_sec", 10.0);
+    odom_frame_id_ = this->declare_parameter<std::string>("odom_frame_id", "odom");
+    base_frame_id_ = this->declare_parameter<std::string>("base_frame_id", "base_link");
     sample_period_ms_ = static_cast<double>(
         this->declare_parameter<int>("sample_period_ms", 50));
 
@@ -66,7 +69,7 @@ public:
 
     pub_imu_ = this->create_publisher<sensor_msgs::msg::Imu>(pub_name_imu_, 10);
     pub_mag_ = this->create_publisher<sensor_msgs::msg::MagneticField>(pub_name_mag_, 10);
-    pub_odomraw_ = this->create_publisher<std_msgs::msg::Float32MultiArray>(pub_name_odomraw_, 10);
+    pub_odomraw_ = this->create_publisher<nav_msgs::msg::Odometry>(pub_name_odomraw_, 10);
     pub_vol_ = this->create_publisher<std_msgs::msg::Float32>(pub_name_vol_, 10);
     pub_joints_ = this->create_publisher<sensor_msgs::msg::JointState>(pub_name_joints_, 10);
 
@@ -166,7 +169,7 @@ private:
     auto time_now = this->now();
     PublishImu(time_now, base_data);
     PublishMag(time_now, base_data);
-    PublishOdomRaw(base_data);
+    PublishOdomRaw(time_now, base_data);
     PublishVoltage(base_data);
     PublishJoints(time_now, base_data);
   }
@@ -198,14 +201,37 @@ private:
     pub_mag_->publish(mag_msg);
   }
 
-  void PublishOdomRaw(const nlohmann::json &base_data) {
-    std_msgs::msg::Float32MultiArray msg;
-    msg.data = {
-        static_cast<float>(base_data.value("odl", 0.0) / 100.0),
-        static_cast<float>(base_data.value("odr", 0.0) / 100.0),
-        static_cast<float>(base_data.value("L", 0.0)),
-        static_cast<float>(base_data.value("R", 0.0)),
-    };
+  void PublishOdomRaw(const rclcpp::Time &time_now, const nlohmann::json &base_data) {
+    nav_msgs::msg::Odometry msg;
+    msg.header.stamp = time_now;
+    msg.header.frame_id = odom_frame_id_;
+    msg.child_frame_id = base_frame_id_;
+    msg.pose.pose.position.x = base_data.value("x", 0.0);
+    msg.pose.pose.position.y = base_data.value("y", 0.0);
+    msg.pose.pose.position.z = 0.0;
+    const double yaw = base_data.value("yaw", 0.0);
+    msg.pose.pose.orientation.x = 0.0;
+    msg.pose.pose.orientation.y = 0.0;
+    msg.pose.pose.orientation.z = std::sin(yaw / 2.0);
+    msg.pose.pose.orientation.w = std::cos(yaw / 2.0);
+    msg.twist.twist.linear.x = base_data.value("vx", 0.0);
+    msg.twist.twist.linear.y = 0.0;
+    msg.twist.twist.linear.z = 0.0;
+    msg.twist.twist.angular.x = 0.0;
+    msg.twist.twist.angular.y = 0.0;
+    msg.twist.twist.angular.z = base_data.value("wz", 0.0);
+    msg.pose.covariance = {1e-3, 0., 0., 0., 0., 0.,
+                           0., 1e-3, 0., 0., 0., 0.,
+                           0., 0., 1e6, 0., 0., 0.,
+                           0., 0., 0., 1e6, 0., 0.,
+                           0., 0., 0., 0., 1e6, 0.,
+                           0., 0., 0., 0., 0., 1e-3};
+    msg.twist.covariance = {1e-3, 0., 0., 0., 0., 0.,
+                            0., 1e-3, 0., 0., 0., 0.,
+                            0., 0., 1e6, 0., 0., 0.,
+                            0., 0., 0., 1e6, 0., 0.,
+                            0., 0., 0., 0., 1e6, 0.,
+                            0., 0., 0., 0., 0., 1e-3}; 
     pub_odomraw_->publish(msg);
   }
 
@@ -283,6 +309,8 @@ private:
   std::string sub_name_vel_;
   std::string sub_name_lights_;
   std::string sub_name_servos_;
+  std::string odom_frame_id_;
+  std::string base_frame_id_;
   bool do_servo_calib_{true};
   double calib_timeout_sec_{10.0};
   double sample_period_ms_{50.0};
@@ -294,7 +322,7 @@ private:
 
   rclcpp::Publisher<sensor_msgs::msg::Imu>::SharedPtr pub_imu_;
   rclcpp::Publisher<sensor_msgs::msg::MagneticField>::SharedPtr pub_mag_;
-  rclcpp::Publisher<std_msgs::msg::Float32MultiArray>::SharedPtr pub_odomraw_;
+  rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr pub_odomraw_;
   rclcpp::Publisher<std_msgs::msg::Float32>::SharedPtr pub_vol_;
   rclcpp::Publisher<sensor_msgs::msg::JointState>::SharedPtr pub_joints_;
   rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr sub_vel_;
