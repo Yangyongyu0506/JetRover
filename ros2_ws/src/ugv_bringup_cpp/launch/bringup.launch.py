@@ -14,6 +14,7 @@ def generate_launch_description():
         output="screen",
         parameters=[
             {
+                "baudrate": 230400,
                 "do_servo_calib": False,
                 "sample_period_ms": 20,
             }
