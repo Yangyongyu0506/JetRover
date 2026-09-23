@@ -13,7 +13,7 @@ def generate_launch_description():
         output='screen',
         arguments=['-configuration_directory', os.path.join(my_pkg_share_dir, 'config'),
                    '-configuration_basename', 'cartographer.lua'],
-        remappings=[('imu', 'imu/data'), ('odom', 'odometry/filtered')],
+        remappings=[('imu', 'imu/data_raw'), ('odom', 'odom/raw')],
     )
     occupancy_node = Node(
         package='cartographer_ros',

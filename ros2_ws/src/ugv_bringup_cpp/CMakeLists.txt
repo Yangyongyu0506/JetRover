@@ -20,6 +20,8 @@ find_package(nlohmann_json REQUIRED)
 find_package(Boost REQUIRED COMPONENTS system)
 find_package(OpenCV REQUIRED)
 find_package(cv_bridge REQUIRED)
+find_package(tf2 REQUIRED)
+find_package(tf2_ros REQUIRED)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -56,6 +58,8 @@ ament_target_dependencies(serial_node_cpp
   std_msgs
   nlohmann_json
   nav_msgs
+  tf2
+  tf2_ros
 )
 target_link_libraries(serial_node_cpp Boost::system)
 
@@ -96,5 +100,6 @@ install(TARGETS
 install(DIRECTORY include/ DESTINATION include)
 install(DIRECTORY config/ DESTINATION share/${PROJECT_NAME}/config)
 install(DIRECTORY launch/ DESTINATION share/${PROJECT_NAME}/launch)
+install(DIRECTORY urdf/ DESTINATION share/${PROJECT_NAME}/urdf)
 
 ament_package()

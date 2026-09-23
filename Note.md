@@ -38,3 +38,7 @@ wget http://fishros.com/install -O fishros && . fishros # 使用fishros脚本一
 ```
 ## 2. UGV开发
 基础资料参见[https://www.waveshare.net/wiki/UGV_Rover_Jetson_Orin_ROS2](url)
+## 3. 实时数据查看
+```bash
+ros2 launch foxglove_bridge foxglove_bridge_launch.xml
+```

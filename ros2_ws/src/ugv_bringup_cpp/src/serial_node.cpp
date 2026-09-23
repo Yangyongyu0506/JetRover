@@ -18,6 +18,9 @@
 #include <std_msgs/msg/float32.hpp>
 #include <std_msgs/msg/float32_multi_array.hpp>
 
+#include <geometry_msgs/msg/transform_stamped.hpp>
+#include <tf2_ros/transform_broadcaster.h>
+
 #include "ugv_bringup_cpp/base_controller.hpp"
 
 namespace ugv_bringup_cpp {
@@ -33,12 +36,12 @@ public:
     pub_name_vol_ = this->declare_parameter<std::string>("vol_topic", "voltage");
     pub_name_joints_ = this->declare_parameter<std::string>("joints_topic", "joint_states");
     sub_name_vel_ = this->declare_parameter<std::string>("vel_topic", "cmd_vel");
-    sub_name_lights_ = this->declare_parameter<std::string>("lights_topic", "ugv/led_strl");
-    sub_name_servos_ = this->declare_parameter<std::string>("servos_topic", "ugv/servos");
+    sub_name_lights_ = this->declare_parameter<std::string>("lights_topic", "led_strl");
+    sub_name_servos_ = this->declare_parameter<std::string>("servos_topic", "servos");
     do_servo_calib_ = this->declare_parameter<bool>("do_servo_calib", false);
     calib_timeout_sec_ = this->declare_parameter<double>("calib_timeout_sec", 10.0);
     odom_frame_id_ = this->declare_parameter<std::string>("odom_frame_id", "odom");
-    base_frame_id_ = this->declare_parameter<std::string>("base_frame_id", "base_link");
+    base_frame_id_ = this->declare_parameter<std::string>("base_frame_id", "base_footprint");
     sample_period_ms_ = static_cast<double>(
         this->declare_parameter<int>("sample_period_ms", 50));
 
@@ -67,6 +70,7 @@ public:
       StartServoCalib();
     }
 
+    tf_broadcaster_ = std::make_unique<tf2_ros::TransformBroadcaster>(this);
     pub_imu_ = this->create_publisher<sensor_msgs::msg::Imu>(pub_name_imu_, 10);
     pub_mag_ = this->create_publisher<sensor_msgs::msg::MagneticField>(pub_name_mag_, 10);
     pub_odomraw_ = this->create_publisher<nav_msgs::msg::Odometry>(pub_name_odomraw_, 10);
@@ -233,6 +237,15 @@ private:
                             0., 0., 0., 0., 1e6, 0.,
                             0., 0., 0., 0., 0., 1e-3}; 
     pub_odomraw_->publish(msg);
+    geometry_msgs::msg::TransformStamped t;
+    t.header.stamp = time_now;
+    t.header.frame_id = odom_frame_id_;
+    t.child_frame_id = base_frame_id_;
+    t.transform.translation.x = msg.pose.pose.position.x;
+    t.transform.translation.y = msg.pose.pose.position.y;
+    t.transform.translation.z = msg.pose.pose.position.z;
+    t.transform.rotation = msg.pose.pose.orientation;
+    tf_broadcaster_->sendTransform(t);
   }
 
   void PublishVoltage(const nlohmann::json &base_data) {
@@ -328,6 +341,7 @@ private:
   rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr sub_vel_;
   rclcpp::Subscription<std_msgs::msg::Float32MultiArray>::SharedPtr sub_lights_;
   rclcpp::Subscription<std_msgs::msg::Float32MultiArray>::SharedPtr sub_servos_;
+  std::unique_ptr<tf2_ros::TransformBroadcaster> tf_broadcaster_;
 
   std::array<double, 9> imu_acce_cov_{};
   std::array<double, 9> imu_gyro_cov_{};
