@@ -60,6 +60,6 @@ def generate_launch_description():
             serial_node,
             lidar_node,
             robot_state_publisher_node,
-            camera_node,
+            # camera_node,
         ]
     )
