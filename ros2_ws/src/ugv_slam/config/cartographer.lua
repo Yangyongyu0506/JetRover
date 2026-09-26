@@ -48,4 +48,15 @@ TRAJECTORY_BUILDER_2D.num_accumulated_range_data = 1
 TRAJECTORY_BUILDER_2D.use_imu_data = true
 TRAJECTORY_BUILDER_2D.use_online_correlative_scan_matching = true
 
+-- In-place wheel slip makes the wheel-odometry yaw overestimate rotation
+-- (~2x measured on the UGV Rover). Until ODOM_TRACK_WIDTH is well calibrated
+-- in the firmware, keep the odometry's influence on the pose graph low so it
+-- cannot fight the IMU. Raise back towards 1e5 once /odom/raw yaw is verified
+-- against a marked 360 deg rotation.
+POSE_GRAPH.optimization_problem.odometry_rotation_weight = 1e3
+
+-- If false/symmetric loop closures still disturb in-place turns, try:
+-- POSE_GRAPH.constraint_builder.min_score = 0.65        -- default 0.55
+-- POSE_GRAPH.constraint_builder.sampling_ratio = 0.1    -- default 0.3
+
 return options
